@@ -13,6 +13,9 @@
     <ClCompile Include="Particle.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -25,6 +28,9 @@
     <ClInclude Include="RenderUtils.hpp" />
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="Particle.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
       <Filter>Practicas</Filter>
     </ClInclude>
   </ItemGroup>

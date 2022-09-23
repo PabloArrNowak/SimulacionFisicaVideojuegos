@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "Particle.h"
+#include "Plane.h"
 
 
 
@@ -31,6 +32,8 @@ PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
 Particle* particle;
+Plane* plane;
+std::vector<Particle*> projectiles;
 
 
 // Initialize physics engine
@@ -57,7 +60,8 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	particle = new Particle(Vector3(), Vector3(10, 15, 0), Vector3(), 0.998);
+	particle = new Particle(Vector3(), Vector3(0, 1, 0), Vector3(0, -0.024, 0), 0.998, 0.0203);
+	plane = new Plane(Vector3(0, -3, 0));
 }
 
 
@@ -72,6 +76,11 @@ void stepPhysics(bool interactive, double t)
 	gScene->fetchResults(true);
 
 	particle->update(t);
+	plane->update(t);
+
+	for (auto p : projectiles) {
+		p->update(t);
+	}
 }
 
 // Function to clean data
@@ -92,6 +101,11 @@ void cleanupPhysics(bool interactive)
 	gFoundation->release();
 
 	delete particle;
+	delete plane;
+
+	for (auto p : projectiles) {
+		delete p;
+	}
 }
 
 // Function called when a key is pressed
@@ -105,6 +119,9 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	//case ' ':	break;
 	case ' ':
 	{
+		// E = 3721
+		// 1220 m/s, 5g, con g = -9.8m/s2; a 300m/s, 82g con g = -2.41m/s2 ??? (Se usan Hm en vez de m) No wtf
+		projectiles.push_back(new Particle(camera.p + Vector3(0, -10, 0), Vector3(0, 0, -3), Vector3(0, -0.0241, 0), 0.998, 0.082));
 		break;
 	}
 	default:
