@@ -4,6 +4,7 @@
 
 class Particle
 {
+protected:
 	Vector3 vel, acc;
 	double damping;
 	float mass; // Cambiar a inverso de la masa
@@ -13,6 +14,6 @@ class Particle
 public:
 	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, float Mass);
 	~Particle();
-	void update(double t);
+	virtual void update(double t);
 };
 

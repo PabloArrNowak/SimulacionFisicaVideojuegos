@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Particle.h"
 #include "Plane.h"
+#include "Projectile.h"
 
 
 
@@ -33,7 +34,7 @@ ContactReportCallback gContactReportCallback;
 
 Particle* particle;
 Plane* plane;
-std::vector<Particle*> projectiles;
+std::vector<Projectile*> projectiles;
 
 
 // Initialize physics engine
@@ -78,8 +79,13 @@ void stepPhysics(bool interactive, double t)
 	particle->update(t);
 	plane->update(t);
 
-	for (auto p : projectiles) {
-		p->update(t);
+	for (int i = 0; i < projectiles.size(); i++) {
+		projectiles[i]->update(t);
+		if (!projectiles[i]->getAlive()) {
+			Projectile* p = projectiles[i];
+			projectiles.erase(projectiles.begin() + i);
+			delete p;
+		}
 	}
 }
 
@@ -119,9 +125,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	//case ' ':	break;
 	case ' ':
 	{
+		Vector3 front = camera.q.getBasisVector2().getNormalized();
 		// E = 3721
-		// 1220 m/s, 5g, con g = -9.8m/s2; a 300m/s, 82g con g = -2.41m/s2 ??? (Se usan Hm en vez de m) No wtf
-		projectiles.push_back(new Particle(camera.p + Vector3(0, -10, 0), Vector3(0, 0, -3), Vector3(0, -0.0241, 0), 0.998, 0.082));
+		// 1220 m/s, 5g, con g = -9.8m/s2
+		// a 300m/s, 82g con g = -2.41m/s2
+		projectiles.push_back(new Projectile(camera.p + Vector3(0, -1, 0), front * -300, Vector3(0, -2.41, 0), 0.998, 0.082));
 		break;
 	}
 	default:

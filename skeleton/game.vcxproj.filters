@@ -16,6 +16,9 @@
     <ClCompile Include="Plane.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -31,6 +34,9 @@
       <Filter>Practicas</Filter>
     </ClInclude>
     <ClInclude Include="Plane.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
       <Filter>Practicas</Filter>
     </ClInclude>
   </ItemGroup>
