@@ -13,7 +13,8 @@ void Projectile::update(double t)
 {
 	vel = Vector3(vel.x + acc.x * t, vel.y + acc.y * t, vel.z + acc.z * t);
 	vel *= pow(damping, t);
-	pos = physx::PxTransform(pos.p.x + vel.x * t + acc.x * exp2(t) / 2, pos.p.y + vel.y * t + acc.y * exp2(t) / 2, pos.p.z + vel.z * t + acc.z * exp2(t) / 2);
+	pos = physx::PxTransform(pos.p.x + vel.x * t, pos.p.y + vel.y * t, pos.p.z + vel.z * t);	// Así le va a Javi
+	// pos = physx::PxTransform(pos.p.x + vel.x * t + acc.x * exp2(t) / 2, pos.p.y + vel.y * t + acc.y * exp2(t) / 2, pos.p.z + vel.z * t + acc.z * exp2(t) / 2);
 
 	age -= t;
 

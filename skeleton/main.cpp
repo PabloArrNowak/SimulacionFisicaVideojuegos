@@ -129,7 +129,9 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		// E = 3721
 		// 1220 m/s, 5g, con g = -9.8m/s2
 		// a 300m/s, 82g con g = -2.41m/s2
-		projectiles.push_back(new Projectile(camera.p + Vector3(0, -1, 0), front * -300, Vector3(0, -2.41, 0), 0.998, 0.082));
+		// a 60 m/s, 
+		// projectiles.push_back(new Projectile(camera.p + Vector3(0, -1, 0), front * -40, Vector3(0, -2.41, 0), 0.998, 0.082));
+		projectiles.push_back(new Projectile(camera.p + Vector3(0, -1, 0), front * -40, Vector3(0, -2.41, 0), 0.998, 0.082));
 		break;
 	}
 	default:

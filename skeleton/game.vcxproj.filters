@@ -19,6 +19,15 @@
     <ClCompile Include="Projectile.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
+    <ClCompile Include="GaussianParticleGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleParticleGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -37,6 +46,15 @@
       <Filter>Practicas</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleGenerator.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="GaussianParticleGenerator.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleParticleGenerator.h">
       <Filter>Practicas</Filter>
     </ClInclude>
   </ItemGroup>
