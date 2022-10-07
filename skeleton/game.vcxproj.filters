@@ -28,7 +28,9 @@
     <ClCompile Include="SimpleParticleGenerator.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -58,7 +60,9 @@
     <ClInclude Include="SimpleParticleGenerator.h">
       <Filter>Practicas</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
