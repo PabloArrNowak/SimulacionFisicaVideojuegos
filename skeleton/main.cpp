@@ -32,7 +32,6 @@ PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
-Particle* particle;
 Plane* plane;
 std::vector<Projectile*> projectiles;
 
@@ -61,7 +60,6 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	particle = new Particle(Vector3(), Vector3(0, 1, 0), Vector3(0, -0.024, 0), 0.998, 0.0203);
 	plane = new Plane(Vector3(0, -3, 0));
 }
 
@@ -76,7 +74,6 @@ void stepPhysics(bool interactive, double t)
 	gScene->simulate(t);
 	gScene->fetchResults(true);
 
-	particle->update(t);
 	plane->update(t);
 
 	for (int i = 0; i < projectiles.size(); i++) {
@@ -106,7 +103,6 @@ void cleanupPhysics(bool interactive)
 	
 	gFoundation->release();
 
-	delete particle;
 	delete plane;
 
 	for (auto p : projectiles) {
@@ -121,14 +117,12 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 	switch(toupper(key))
 	{
-	//case 'B': break;
 	case ' ':
 	{
 		Vector3 front = camera.q.getBasisVector2().getNormalized();
 		// E = 3721
 		// 1220 m/s, 5g, con g = -9.8m/s2
-		// a 300m/s, 82g con g = -2.41m/s2
-		// a 60 m/s, 2067g con g = -0.482m/s2
+		// a 60 m/s, 2067g (2kg) con g = -0.482m/s2
 		projectiles.push_back(new Projectile(camera.p + Vector3(0, -1, 0), front * -60, Vector3(0, -0.482, 0), 0.998, 2.067));
 		break;
 	}
