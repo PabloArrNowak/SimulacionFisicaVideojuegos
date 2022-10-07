@@ -122,16 +122,14 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	switch(toupper(key))
 	{
 	//case 'B': break;
-	//case ' ':	break;
 	case ' ':
 	{
 		Vector3 front = camera.q.getBasisVector2().getNormalized();
 		// E = 3721
 		// 1220 m/s, 5g, con g = -9.8m/s2
 		// a 300m/s, 82g con g = -2.41m/s2
-		// a 60 m/s, 
-		// projectiles.push_back(new Projectile(camera.p + Vector3(0, -1, 0), front * -40, Vector3(0, -2.41, 0), 0.998, 0.082));
-		projectiles.push_back(new Projectile(camera.p + Vector3(0, -1, 0), front * -40, Vector3(0, -2.41, 0), 0.998, 0.082));
+		// a 60 m/s, 2067g con g = -0.482m/s2
+		projectiles.push_back(new Projectile(camera.p + Vector3(0, -1, 0), front * -60, Vector3(0, -0.482, 0), 0.998, 2.067));
 		break;
 	}
 	default:
