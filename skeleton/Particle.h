@@ -17,9 +17,9 @@ protected:
 
 public:
 	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double Damping, float Mass, float lifeTime);
+	Particle(Particle* other, Vector3 newPos, Vector3 newVel, Vector3 newAcc, float newLifeTime);
 	~Particle();
-	virtual void update(double t);
-	virtual Particle* clone() const;
+	virtual bool update(double t);
 
 	bool getAlive() {
 		return alive;

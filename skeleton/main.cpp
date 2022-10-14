@@ -12,6 +12,8 @@
 #include "Particle.h"
 #include "Plane.h"
 #include "Projectile.h"
+#include "ParticleSystem.h"
+#include "SimpleParticleGenerator.h"
 
 
 
@@ -32,8 +34,13 @@ PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
+// ---
+
 Plane* plane;
 std::vector<Projectile*> projectiles;
+
+ParticleSystem* partSystem;
+ParticleGenerator* currentGen;
 
 
 // Initialize physics engine
@@ -61,6 +68,12 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	plane = new Plane(Vector3(0, -3, 0));
+
+	partSystem = new ParticleSystem();
+
+	currentGen = new SimpleParticleGenerator(Vector3(0, 3, -10), Vector3(0, 10, 0), Vector3(0, -5, 0), 2.0, Vector3(2, 0, 2), Vector3(3, 2, 3), 0.5, 0);
+	currentGen->setParticle(new Projectile(Vector3(), Vector3(), Vector3(), 0, 0));
+	partSystem->setGenerator(currentGen);
 }
 
 
@@ -75,6 +88,7 @@ void stepPhysics(bool interactive, double t)
 	gScene->fetchResults(true);
 
 	plane->update(t);
+	partSystem->update(t);
 
 	for (int i = 0; i < projectiles.size(); i++) {
 		projectiles[i]->update(t);
@@ -105,6 +119,8 @@ void cleanupPhysics(bool interactive)
 
 	delete plane;
 
+	delete partSystem;
+
 	for (auto p : projectiles) {
 		delete p;
 	}
@@ -126,6 +142,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		projectiles.push_back(new Projectile(camera.p + Vector3(0, -1, 0), front * -60, Vector3(0, -0.482, 0), 0.998, 2.067));
 		break;
 	}
+	case '1':
+		currentGen = new SimpleParticleGenerator(Vector3(0, 3, -10), Vector3(0, 5, 0), Vector3(0, -5, 0), 2.0, Vector3(2, 0, 2), Vector3(3, 2, 3), 0.5, 0);
+		currentGen->setParticle(new Projectile(Vector3(), Vector3(), Vector3(), 0, 0));
+		partSystem->setGenerator(currentGen);
+		break;
 	default:
 		break;
 	}

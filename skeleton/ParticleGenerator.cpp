@@ -1,7 +1,9 @@
 #include "ParticleGenerator.h"
 
-ParticleGenerator::ParticleGenerator()
+ParticleGenerator::ParticleGenerator(Vector3 pos, Vector3 vel, double iMass)
 {
+	meanPos = pos;
+	meanVel = vel;
 }
 
 ParticleGenerator::~ParticleGenerator()
@@ -11,4 +13,9 @@ ParticleGenerator::~ParticleGenerator()
 void ParticleGenerator::setParticle(Particle* model)
 {
 	modelPart = model;
+}
+
+std::string ParticleGenerator::getName()
+{
+	return name;
 }
