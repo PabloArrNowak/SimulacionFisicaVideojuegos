@@ -10,18 +10,21 @@ ParticleSystem::ParticleSystem()
 
 void ParticleSystem::update(double t)
 {
+	for (auto it = particles.begin(); it != particles.end();) {
+		if (!(*it)->update(t)) {
+			Particle* del = *it;
+			it = particles.erase(it);
+			delete del;
+		}
+		else it++;
+	}
+
 	for (ParticleGenerator* gen : particleGenerators) {
 	
 		auto parts = gen->generateParticles();
 		for (Particle* part : parts) {
 			particles.push_back(part);
 		}
-
-	}
-
-	for (Particle* part : particles) {
-
-		part->update(t);
 
 	}
 }

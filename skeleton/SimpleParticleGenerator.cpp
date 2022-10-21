@@ -12,16 +12,18 @@ SimpleParticleGenerator::SimpleParticleGenerator(Vector3 pos, Vector3 vel, Vecto
 	lifeTimeWidth = lifeTimeWidthh;
 	generationProb = 1;
 
+	numParticles = 5;
+
 	distribGenProb = uniform_real_distribution<double>(0, 1);
-	distribGenProb = uniform_real_distribution<double>(lifeTime - lifeTimeWidth / 2, lifeTime + lifeTimeWidth / 2);
+	distribLifeTime = uniform_real_distribution<double>(lifeTime - lifeTimeWidth / 2, lifeTime + lifeTimeWidth / 2);
 
 	distribPosX = uniform_real_distribution<double>(pos.x - posWidth.x / 2, pos.x + posWidth.x / 2);
 	distribPosY = uniform_real_distribution<double>(pos.y - posWidth.y / 2, pos.y + posWidth.y / 2);
 	distribPosZ = uniform_real_distribution<double>(pos.z - posWidth.z / 2, pos.z + posWidth.z / 2);
 
 	distribVelX = uniform_real_distribution<double>(vel.x - velWidth.x / 2, vel.x + velWidth.x / 2);
-	distribVelY = uniform_real_distribution<double>(pos.y - posWidth.y / 2, pos.y + posWidth.y / 2);
-	distribVelZ = uniform_real_distribution<double>(pos.z - posWidth.z / 2, pos.z + posWidth.z / 2);
+	distribVelY = uniform_real_distribution<double>(vel.y - velWidth.y / 2, vel.y + velWidth.y / 2);
+	distribVelZ = uniform_real_distribution<double>(vel.z - velWidth.z / 2, vel.z + velWidth.z / 2);
 }
 
 list<Particle*> SimpleParticleGenerator::generateParticles()

@@ -14,6 +14,7 @@
 #include "Projectile.h"
 #include "ParticleSystem.h"
 #include "SimpleParticleGenerator.h"
+#include "WaterDropParticle.h"
 
 
 
@@ -71,8 +72,9 @@ void initPhysics(bool interactive)
 
 	partSystem = new ParticleSystem();
 
-	currentGen = new SimpleParticleGenerator(Vector3(0, 3, -10), Vector3(0, 10, 0), Vector3(0, -5, 0), 2.0, Vector3(2, 0, 2), Vector3(3, 2, 3), 0.5, 0);
-	currentGen->setParticle(new Projectile(Vector3(), Vector3(), Vector3(), 0, 0));
+	// Fuente
+	currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 0.5);
+	currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 	partSystem->setGenerator(currentGen);
 }
 
@@ -143,8 +145,15 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		break;
 	}
 	case '1':
-		currentGen = new SimpleParticleGenerator(Vector3(0, 3, -10), Vector3(0, 5, 0), Vector3(0, -5, 0), 2.0, Vector3(2, 0, 2), Vector3(3, 2, 3), 0.5, 0);
-		currentGen->setParticle(new Projectile(Vector3(), Vector3(), Vector3(), 0, 0));
+		delete currentGen;
+		currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 0.5);
+		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
+		partSystem->setGenerator(currentGen);
+		break;
+	case '2':
+		delete currentGen;
+		currentGen = new SimpleParticleGenerator(Vector3(0, 10, -10), Vector3(0, 0, 0), Vector3(0, -1, 0), 3.5, Vector3(5, 0, 5), Vector3(10, 5, 10), 0.5, 0.5);
+		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 		partSystem->setGenerator(currentGen);
 		break;
 	default:

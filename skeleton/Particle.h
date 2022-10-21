@@ -16,7 +16,7 @@ protected:
 	// ParticleType type;
 
 public:
-	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double Damping, float Mass, float lifeTime);
+	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double Damping, float Mass, float lifeTime, Vector4 color, float radius);
 	Particle(Particle* other, Vector3 newPos, Vector3 newVel, Vector3 newAcc, float newLifeTime);
 	~Particle();
 	virtual bool update(double t);

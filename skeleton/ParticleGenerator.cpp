@@ -12,6 +12,7 @@ ParticleGenerator::~ParticleGenerator()
 
 void ParticleGenerator::setParticle(Particle* model)
 {
+	// delete modelPart;
 	modelPart = model;
 }
 

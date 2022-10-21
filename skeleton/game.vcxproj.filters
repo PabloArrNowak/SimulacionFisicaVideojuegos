@@ -63,6 +63,9 @@
     <ClInclude Include="ParticleSystem.h">
       <Filter>Practicas</Filter>
     </ClInclude>
+    <ClInclude Include="WaterDropParticle.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

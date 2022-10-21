@@ -1,16 +1,17 @@
 #include "Particle.h"
 
-Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double Damping, float Mass, float lifeTime) :
-	vel(Vel), acc(Acc), damping(Damping), invMass(1/Mass), timeLeft(lifeTime), alive(true)
+Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double Damping, float Mass, float lifeTime, Vector4 color, float radius) :
+	vel(Vel), acc(Acc), invMass(1/Mass), timeLeft(lifeTime), alive(true)
 {
+	damping = Damping;
 	pos = physx::PxTransform(Pos.x, Pos.y, Pos.z);
-	renderItem = new RenderItem(CreateShape(physx::PxSphereGeometry(0.9)), &pos, { 0.5, 0, 0.5, 1 });
+	renderItem = new RenderItem(CreateShape(physx::PxSphereGeometry(radius)), &pos, color);
 }
 
 Particle::Particle(Particle* other, Vector3 newPos, Vector3 newVel, Vector3 newAcc, float newLifeTime) : 
 	pos(newPos), vel(newVel), acc(newAcc), damping(other->damping), invMass(other->invMass), timeLeft(newLifeTime), alive(true)
 {
-
+	renderItem = new RenderItem(other->renderItem->shape, &pos, other->renderItem->color);
 }
 
 Particle::~Particle()
