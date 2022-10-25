@@ -14,6 +14,7 @@
 #include "Projectile.h"
 #include "ParticleSystem.h"
 #include "SimpleParticleGenerator.h"
+#include "GaussianParticleGenerator.h"
 #include "WaterDropParticle.h"
 
 
@@ -146,13 +147,29 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	}
 	case '1':
 		delete currentGen;
+		partSystem->resetParticles();
 		currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 0.5);
 		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 		partSystem->setGenerator(currentGen);
 		break;
 	case '2':
 		delete currentGen;
-		currentGen = new SimpleParticleGenerator(Vector3(0, 10, -10), Vector3(0, 0, 0), Vector3(0, -1, 0), 3.5, Vector3(5, 0, 5), Vector3(10, 5, 10), 0.5, 0.5);
+		partSystem->resetParticles();
+		currentGen = new GaussianParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), 3.5, Vector3(0.5, 0.2, 0.5), Vector3(1.25, 0.5, 1.25), 0.5);
+		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
+		partSystem->setGenerator(currentGen);
+		break;
+	case '3':
+		delete currentGen;
+		partSystem->resetParticles();
+		currentGen = new SimpleParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), Vector3(0, -10, 0), 3.5, Vector3(5, 0, 5), Vector3(10, 5, 10), 0.5, 0.5);
+		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
+		partSystem->setGenerator(currentGen);
+		break;
+	case '4':
+		delete currentGen;
+		partSystem->resetParticles();
+		currentGen = new GaussianParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), 3.5, Vector3(1.25, 0.2, 1.25), Vector3(2.5, 1.25, 2.5), 0.5);
 		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 		partSystem->setGenerator(currentGen);
 		break;

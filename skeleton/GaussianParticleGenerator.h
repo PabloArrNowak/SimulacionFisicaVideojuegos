@@ -7,8 +7,10 @@
 class GaussianParticleGenerator : public ParticleGenerator
 {
 protected:
-	Vector3 std_dev_pos, std_dev_vel;
-	double std_fev_t;
+
+	Vector3 mean_pos, mean_vel, std_dev_pos, std_dev_vel;
+	double mean_t, std_dev_t;
+
 	std::normal_distribution<double> d{ 0, 1 };
 
 	std::normal_distribution<double> distribLifeTime;
@@ -22,7 +24,7 @@ protected:
 	std::normal_distribution<double> distribVelZ;
 
 public: 
-	GaussianParticleGenerator(Vector3 std_dev_pos, Vector3 std_dev_vel);
+	GaussianParticleGenerator(Vector3 mean_pos, Vector3 mean_vel, double mean_t, Vector3 std_dev_pos, Vector3 std_dev_vel, double std_dev_t);
 	virtual std::list<Particle*> generateParticles();
 
 };

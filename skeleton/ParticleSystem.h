@@ -23,6 +23,7 @@ public:
 	void generateFireworkSystem();
 
 	void setGenerator(ParticleGenerator* gen);
+	void resetParticles();
 
 };
 

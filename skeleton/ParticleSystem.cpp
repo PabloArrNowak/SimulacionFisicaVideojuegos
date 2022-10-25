@@ -53,3 +53,12 @@ void ParticleSystem::setGenerator(ParticleGenerator* gen)
 
 	particleGenerators.push_back(gen);
 }
+
+void ParticleSystem::resetParticles()
+{
+	for (auto it = particles.begin(); it != particles.end();) {
+			Particle* del = *it;
+			it = particles.erase(it);
+			delete del;
+	}
+}
