@@ -6,6 +6,8 @@
 
 class Particle;
 class ParticleGenerator;
+class Firework;
+class FireworkRule;
 
 class ParticleSystem
 {
@@ -14,13 +16,22 @@ protected:
 	std::list<ParticleGenerator*> particleGenerators;
 	Vector3 gravity;
 
+	std::vector<FireworkRule*> _firework_rules;
+	std::list<Firework*> fireworks;
+	unsigned _curr_t;
+
 public:
 
 	ParticleSystem();
 
 	void update(double t);
 	ParticleGenerator* getParticleGenerator(std::string name);
+
 	void generateFireworkSystem();
+	void generateFirework(unsigned type, const Vector3& pos, const Vector3& vel);
+	FireworkRule* getFireworkRule(unsigned type) { return _firework_rules[type]; };
+
+	void fireworksUpdate(double t);
 
 	void setGenerator(ParticleGenerator* gen);
 	void resetParticles();

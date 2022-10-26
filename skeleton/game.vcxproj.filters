@@ -31,6 +31,9 @@
     <ClCompile Include="ParticleSystem.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="Firework.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -64,6 +67,9 @@
       <Filter>Practicas</Filter>
     </ClInclude>
     <ClInclude Include="WaterDropParticle.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="Firework.h">
       <Filter>Practicas</Filter>
     </ClInclude>
   </ItemGroup>

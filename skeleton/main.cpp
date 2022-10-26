@@ -77,6 +77,8 @@ void initPhysics(bool interactive)
 	currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 0.5);
 	currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 	partSystem->setGenerator(currentGen);
+
+	partSystem->generateFireworkSystem();
 }
 
 
@@ -146,31 +148,52 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		break;
 	}
 	case '1':
-		delete currentGen;
+		if (currentGen != nullptr) {
+			delete currentGen;
+			currentGen = nullptr;
+		}
 		partSystem->resetParticles();
 		currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 0.5);
 		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 		partSystem->setGenerator(currentGen);
 		break;
 	case '2':
-		delete currentGen;
+		if (currentGen != nullptr) {
+			delete currentGen;
+			currentGen = nullptr;
+		}
 		partSystem->resetParticles();
 		currentGen = new GaussianParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), 3.5, Vector3(0.5, 0.2, 0.5), Vector3(1.25, 0.5, 1.25), 0.5);
 		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 		partSystem->setGenerator(currentGen);
 		break;
 	case '3':
-		delete currentGen;
+		if (currentGen != nullptr) {
+			delete currentGen;
+			currentGen = nullptr;
+		}
 		partSystem->resetParticles();
 		currentGen = new SimpleParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), Vector3(0, -10, 0), 3.5, Vector3(5, 0, 5), Vector3(10, 5, 10), 0.5, 0.5);
 		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 		partSystem->setGenerator(currentGen);
 		break;
 	case '4':
-		delete currentGen;
+		if (currentGen != nullptr) {
+			delete currentGen;
+			currentGen = nullptr;
+		}
 		partSystem->resetParticles();
 		currentGen = new GaussianParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), 3.5, Vector3(1.25, 0.2, 1.25), Vector3(2.5, 1.25, 2.5), 0.5);
 		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
+		partSystem->setGenerator(currentGen);
+		break;
+	case '5':
+		if (currentGen != nullptr) {
+			delete currentGen;
+			currentGen = nullptr;
+		}
+		partSystem->resetParticles();
+		partSystem->generateFirework(2, Vector3(0, 2, -10), Vector3(0, 25, 0));
 		partSystem->setGenerator(currentGen);
 		break;
 	default:

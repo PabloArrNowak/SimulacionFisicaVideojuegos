@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RenderUtils.hpp"
+#include <list>
 
 class Particle
 {
@@ -20,6 +21,7 @@ public:
 	Particle(Particle* other, Vector3 newPos, Vector3 newVel, Vector3 newAcc, float newLifeTime);
 	~Particle();
 	virtual bool update(double t);
+	virtual std::list<Particle*> onDeath() { return std::list<Particle*>(); };
 
 	bool getAlive() {
 		return alive;
