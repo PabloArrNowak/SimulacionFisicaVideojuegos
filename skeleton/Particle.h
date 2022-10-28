@@ -16,6 +16,9 @@ protected:
 	bool alive;
 	// ParticleType type;
 
+	Vector3 totalForce;
+
+
 public:
 	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double Damping, float Mass, float lifeTime, Vector4 color, float radius);
 	Particle(Particle* other, Vector3 newPos, Vector3 newVel, Vector3 newAcc, float newLifeTime);
@@ -26,5 +29,11 @@ public:
 	bool getAlive() {
 		return alive;
 	}
+	double getInvMass() {
+		return invMass;
+	}
+
+	void resetForces();
+	void addForce(const Vector3& force);
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RenderUtils.hpp"
+#include "ParticleForceRegistry.h"
 #include <list>
 #include <string>
 
@@ -8,6 +9,7 @@ class Particle;
 class ParticleGenerator;
 class Firework;
 class FireworkRule;
+class ForceGenerator;
 
 class ParticleSystem
 {
@@ -19,6 +21,9 @@ protected:
 	std::vector<FireworkRule*> _firework_rules;
 	std::list<Firework*> fireworks;
 	unsigned _curr_t;
+
+	ParticleForceRegistry partForceRegistry;
+	std::list<ForceGenerator*> forceGenerators;
 
 public:
 

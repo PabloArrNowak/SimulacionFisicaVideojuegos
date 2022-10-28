@@ -34,6 +34,15 @@
     <ClCompile Include="Firework.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="ForceGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleForceRegistry.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityForceGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -70,6 +79,15 @@
       <Filter>Practicas</Filter>
     </ClInclude>
     <ClInclude Include="Firework.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceGenerator.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleForceRegistry.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceGenerator.h">
       <Filter>Practicas</Filter>
     </ClInclude>
   </ItemGroup>

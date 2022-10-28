@@ -21,13 +21,31 @@ Particle::~Particle()
 
 bool Particle::update(double t)
 {
+	if (invMass <= 0.0 && timeLeft > 0.0) return true;
+	else if (invMass <= 0.0) return false;
+
+	Vector3 totalAcc = acc;
+	acc += totalForce * invMass;
+
 	vel = Vector3(vel.x + acc.x * t, vel.y + acc.y * t, vel.z + acc.z * t);
 	vel *= pow(damping, t);
 
 	pos = physx::PxTransform(pos.p.x + vel.x * t, pos.p.y + vel.y * t, pos.p.z + vel.z * t);
 
+	resetForces();
+
 	timeLeft -= t;
 
 	if (pos.p.y < 0 || timeLeft < 0) return false;
 	return true;
+}
+
+void Particle::resetForces()
+{
+	// totalForce.clear(); ??
+}
+
+void Particle::addForce(const Vector3& force)
+{
+	totalForce += force;
 }

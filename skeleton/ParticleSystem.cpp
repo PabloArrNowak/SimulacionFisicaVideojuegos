@@ -6,15 +6,19 @@ ParticleSystem::ParticleSystem()
 {
 	particles = list<Particle*>();
 	particleGenerators = list<ParticleGenerator*>();
+	partForceRegistry = ParticleForceRegistry();
 	gravity = { 0, -10, 0 };
 }
 
 void ParticleSystem::update(double t)
 {
+	partForceRegistry.update(t);
+
 	for (auto it = particles.begin(); it != particles.end();) {
 		if (!(*it)->update(t)) {
 			Particle* del = *it;
 			it = particles.erase(it);
+			partForceRegistry.deleteParticle(del);
 			delete del;
 		}
 		else it++;
@@ -27,6 +31,7 @@ void ParticleSystem::update(double t)
 		auto parts = gen->generateParticles();
 		for (Particle* part : parts) {
 			particles.push_back(part);
+			// Add to partForceRegistry
 		}
 
 	}

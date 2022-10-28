@@ -74,7 +74,7 @@ void initPhysics(bool interactive)
 	partSystem = new ParticleSystem();
 
 	// Fuente
-	currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 0.5);
+	currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
 	currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 	partSystem->setGenerator(currentGen);
 
