@@ -16,6 +16,7 @@
 #include "SimpleParticleGenerator.h"
 #include "GaussianParticleGenerator.h"
 #include "WaterDropParticle.h"
+#include "GravityForceGenerator.h"
 
 
 
@@ -74,11 +75,15 @@ void initPhysics(bool interactive)
 	partSystem = new ParticleSystem();
 
 	// Fuente
-	currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
+	// currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
+	currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, 0, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
 	currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 	partSystem->setGenerator(currentGen);
 
 	partSystem->generateFireworkSystem();
+
+	GravityForceGenerator* gravF = new GravityForceGenerator(Vector3(0, -10, 0));
+	partSystem->addForceGen(gravF);
 }
 
 
@@ -153,7 +158,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 			currentGen = nullptr;
 		}
 		partSystem->resetParticles();
-		currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 0.5);
+		currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, 0, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 0.5);
 		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 		partSystem->setGenerator(currentGen);
 		break;
@@ -173,7 +178,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 			currentGen = nullptr;
 		}
 		partSystem->resetParticles();
-		currentGen = new SimpleParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), Vector3(0, -10, 0), 3.5, Vector3(5, 0, 5), Vector3(10, 5, 10), 0.5, 0.5);
+		currentGen = new SimpleParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), Vector3(0, 0, 0), 3.5, Vector3(5, 0, 5), Vector3(10, 5, 10), 0.5, 0.5);
 		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
 		partSystem->setGenerator(currentGen);
 		break;

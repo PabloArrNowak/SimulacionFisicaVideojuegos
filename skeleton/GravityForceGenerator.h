@@ -11,8 +11,9 @@ protected:
 public:
 
 	GravityForceGenerator(const Vector3& g);
+	~GravityForceGenerator();
 
-	virtual void updateForce(Particle* particle, double t);
+	virtual void updateForce(Particle* particle, double t) override;
 
 	inline void setGravity(Vector3 g) { gravity = g; };
 

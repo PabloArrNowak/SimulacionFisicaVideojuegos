@@ -38,7 +38,8 @@ list<Particle*> SimpleParticleGenerator::generateParticles()
 			Vector3 rndPos = Vector3(distribPosX(generator), distribPosY(generator), distribPosZ(generator));
 			Vector3 rndVel = Vector3(distribVelX(generator), distribVelY(generator), distribVelZ(generator));
 
-			parts.push_back(new Particle(modelPart, rndPos, rndVel, gravityAcc, distribLifeTime(generator)));
+			// parts.push_back(new Particle(modelPart, rndPos, rndVel, gravityAcc, distribLifeTime(generator)));
+			parts.push_back(new Particle(modelPart, rndPos, rndVel, { 0, 0, 0 }, distribLifeTime(generator)));
 		}
 	}
 

@@ -37,7 +37,8 @@ std::list<Particle*> GaussianParticleGenerator::generateParticles()
 			Vector3 rndPos = Vector3(distribPosX(generator), distribPosY(generator), distribPosZ(generator));
 			Vector3 rndVel = Vector3(distribVelX(generator), distribVelY(generator), distribVelZ(generator));
 
-			parts.push_back(new Particle(modelPart, rndPos, rndVel, Vector3(0, -10, 0), distribLifeTime(generator)));
+			// parts.push_back(new Particle(modelPart, rndPos, rndVel, Vector3(0, -10, 0), distribLifeTime(generator)));
+			parts.push_back(new Particle(modelPart, rndPos, rndVel, Vector3(0, 0, 0), distribLifeTime(generator)));
 		}
 	}
 

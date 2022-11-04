@@ -24,8 +24,7 @@ bool Particle::update(double t)
 	if (invMass <= 0.0 && timeLeft > 0.0) return true;
 	else if (invMass <= 0.0) return false;
 
-	Vector3 totalAcc = acc;
-	acc += totalForce * invMass;
+	acc = totalForce * invMass;
 
 	vel = Vector3(vel.x + acc.x * t, vel.y + acc.y * t, vel.z + acc.z * t);
 	vel *= pow(damping, t);
@@ -42,7 +41,7 @@ bool Particle::update(double t)
 
 void Particle::resetForces()
 {
-	// totalForce.clear(); ??
+	totalForce = { 0, 0, 0 };
 }
 
 void Particle::addForce(const Vector3& force)

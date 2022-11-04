@@ -21,6 +21,6 @@ public:
 	ForceGenerator();
 	~ForceGenerator();
 
-	virtual void updateForce(Particle* p, float t) = 0;
+	virtual void updateForce(Particle* p, double t) = 0;
 };
 

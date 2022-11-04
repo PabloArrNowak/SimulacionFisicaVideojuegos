@@ -32,6 +32,10 @@ void ParticleSystem::update(double t)
 		for (Particle* part : parts) {
 			particles.push_back(part);
 			// Add to partForceRegistry
+			for (ForceGenerator* force : forceGenerators) {
+				partForceRegistry.addRegistry(force, part);
+
+			}
 		}
 
 	}
@@ -74,7 +78,8 @@ void ParticleSystem::generateFirework(unsigned type, const Vector3& pos, const V
 		return;
 	}
 
-	Firework* fw = new Firework(pos, vel, gravity * 0.99f, _firework_rules[type]);
+	// Firework* fw = new Firework(pos, vel, gravity * 0.99f, _firework_rules[type]);
+	Firework* fw = new Firework(pos, vel, { 0, 0, 0 }, _firework_rules[type]);
 	// Masa...
 
 	fireworks.push_back(fw);
