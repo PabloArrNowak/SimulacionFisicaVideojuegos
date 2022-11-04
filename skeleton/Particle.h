@@ -33,6 +33,10 @@ public:
 		return invMass;
 	}
 
+	Vector3 getVel() {
+		return vel;
+	}
+
 	void resetForces();
 	void addForce(const Vector3& force);
 };

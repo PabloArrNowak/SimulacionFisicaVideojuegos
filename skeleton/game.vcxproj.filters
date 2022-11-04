@@ -43,6 +43,9 @@
     <ClCompile Include="GravityForceGenerator.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="WindForceGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -88,6 +91,9 @@
       <Filter>Practicas</Filter>
     </ClInclude>
     <ClInclude Include="GravityForceGenerator.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="WindForceGenerator.h">
       <Filter>Practicas</Filter>
     </ClInclude>
   </ItemGroup>
