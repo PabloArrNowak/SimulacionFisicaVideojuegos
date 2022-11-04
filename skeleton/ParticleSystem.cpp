@@ -1,5 +1,6 @@
 #include "ParticleSystem.h"
 #include "ParticleGenerator.h"
+#include "ForceGenerator.h"
 #include "Firework.h"
 
 ParticleSystem::ParticleSystem()
@@ -12,6 +13,19 @@ ParticleSystem::ParticleSystem()
 
 void ParticleSystem::update(double t)
 {
+	for (ParticleGenerator* gen : particleGenerators) {
+	
+		auto parts = gen->generateParticles();
+		for (Particle* part : parts) {
+			particles.push_back(part);
+			// Add to partForceRegistry
+			for (ForceGenerator* force : forceGenerators) {
+				partForceRegistry.addRegistry(force, part);
+				part->resetForces();
+			}
+		}
+	}
+
 	partForceRegistry.update(t);
 
 	for (auto it = particles.begin(); it != particles.end();) {
@@ -23,21 +37,11 @@ void ParticleSystem::update(double t)
 		}
 		else it++;
 	}
-	
+
 	fireworksUpdate(t);
 
-	for (ParticleGenerator* gen : particleGenerators) {
-	
-		auto parts = gen->generateParticles();
-		for (Particle* part : parts) {
-			particles.push_back(part);
-			// Add to partForceRegistry
-			for (ForceGenerator* force : forceGenerators) {
-				partForceRegistry.addRegistry(force, part);
-
-			}
-		}
-
+	for (auto part : particles) {
+		part->resetForces();
 	}
 }
 
@@ -83,7 +87,10 @@ void ParticleSystem::generateFirework(unsigned type, const Vector3& pos, const V
 	// Masa...
 
 	fireworks.push_back(fw);
-
+	for (ForceGenerator* force : forceGenerators) {
+		partForceRegistry.addRegistry(force, fw);
+		fw->resetForces();
+	}
 }
 
 void ParticleSystem::fireworksUpdate(double t)
@@ -98,6 +105,7 @@ void ParticleSystem::fireworksUpdate(double t)
 			Vector3 pos = firework->getPos();
 			Vector3 vel = firework->getVel();
 			it = fireworks.erase(it);
+			partForceRegistry.deleteParticle(firework);
 			delete firework;
 
 			for (auto itPayload = rule->_payloads.begin(); itPayload != rule->_payloads.end(); itPayload++) {
@@ -126,6 +134,7 @@ void ParticleSystem::resetParticles()
 	for (auto it = particles.begin(); it != particles.end();) {
 			Particle* del = *it;
 			it = particles.erase(it);
+			partForceRegistry.deleteParticle(del);
 			delete del;
 	}
 }
