@@ -1,0 +1,22 @@
+Nivel 1:
+
+Estructura de madera y cristal con TNT: Estructuras reciben daño según la fuerza que reciben.
+(Línea de puntos de ayuda para apuntar?)
+
+
+Nivel 2:
+
+Estructura de piedra en el centro, barquitos de madera flotando en agua a los lados.
+(Túnel bajo agua por el que apuntar para estallar TNT en el centro de la estructura, llegando por debajo).
+
+
+Nivel 3:
+
+Estructura de cristal, piedra y madera, con corrientes de viento que dificultan el tiro (Imanes?)
+
+
+Pájaros:
+
+	- Blues: Saca 2 más, un poco por encima y por debajo (no colisionan entre ellos), como Fireworks
+	
+	- Bomb: Explosión

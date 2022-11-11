@@ -17,6 +17,10 @@
 #include "GaussianParticleGenerator.h"
 #include "WaterDropParticle.h"
 #include "GravityForceGenerator.h"
+#include "WindForceGenerator.h"
+#include "WindAreaForceGenerator.h"
+#include "TornadoAreaForceGenerator.h"
+#include "BallParticle.h"
 
 
 
@@ -84,6 +88,12 @@ void initPhysics(bool interactive)
 
 	GravityForceGenerator* gravF = new GravityForceGenerator(Vector3(0, -10, 0));
 	partSystem->addForceGen(gravF);
+
+	// WindAreaForceGenerator* windF = new WindAreaForceGenerator(Vector3(0, 20, 0), Vector3(0, 0, -10), Vector3(50, 20, 50));
+	// partSystem->addForceGen(windF);
+
+	TornadoAreaForceGenerator* tornadoF = new TornadoAreaForceGenerator(2, Vector3(0, 0, -10), Vector3(20, 20, 20));
+	partSystem->addForceGen(tornadoF);
 }
 
 
@@ -199,6 +209,16 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		}
 		partSystem->resetParticles();
 		partSystem->generateFirework(2, Vector3(0, 2, -10), Vector3(0, 25, 0));
+		partSystem->setGenerator(currentGen);
+		break;
+	case '6':
+		if (currentGen != nullptr) {
+			delete currentGen;
+			currentGen = nullptr;
+		}
+		partSystem->resetParticles();
+		currentGen = new GaussianParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), 5, Vector3(3, 0.5, 3), Vector3(2.5, 1.25, 2.5), 0.5);
+		currentGen->setParticle(new BallParticle(2, 2));
 		partSystem->setGenerator(currentGen);
 		break;
 	default:

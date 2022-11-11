@@ -46,6 +46,12 @@
     <ClCompile Include="WindForceGenerator.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="WindAreaForceGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
+    <ClCompile Include="TornadoAreaForceGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -94,6 +100,15 @@
       <Filter>Practicas</Filter>
     </ClInclude>
     <ClInclude Include="WindForceGenerator.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="WindAreaForceGenerator.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="TornadoAreaForceGenerator.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="BallParticle.h">
       <Filter>Practicas</Filter>
     </ClInclude>
   </ItemGroup>

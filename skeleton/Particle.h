@@ -37,6 +37,10 @@ public:
 		return vel;
 	}
 
+	Vector3 getPos() {
+		return pos.p;
+	}
+
 	void resetForces();
 	void addForce(const Vector3& force);
 };
