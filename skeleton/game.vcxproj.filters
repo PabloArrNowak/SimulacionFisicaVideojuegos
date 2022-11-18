@@ -52,6 +52,12 @@
     <ClCompile Include="TornadoAreaForceGenerator.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="ExplosionForceGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosionExpandingForceGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -109,6 +115,12 @@
       <Filter>Practicas</Filter>
     </ClInclude>
     <ClInclude Include="BallParticle.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosionForceGenerator.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosionExpandingForceGenerator.h">
       <Filter>Practicas</Filter>
     </ClInclude>
   </ItemGroup>

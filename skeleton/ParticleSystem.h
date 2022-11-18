@@ -42,6 +42,7 @@ public:
 	void resetParticles();
 
 	void addForceGen(ForceGenerator* gen) { forceGenerators.push_back(gen); };
+	void removeForceGen(ForceGenerator* gen) { forceGenerators.remove(gen); };
 
 };
 

@@ -17,6 +17,12 @@ Estructura de cristal, piedra y madera, con corrientes de viento que dificultan 
 
 Pájaros:
 
-	- Blues: Saca 2 más, un poco por encima y por debajo (no colisionan entre ellos), como Fireworks
+	- Blues: Saca 2 más, un poco por encima y por debajo (no colisionan entre ellos), como Fireworks.
 	
-	- Bomb: Explosión
+	- Bomb: Explosión.
+
+	- Chuck: Al pulsar, acelera mucho en la dirección que está volando.
+
+
+Cada pájaro tiene un damageMultiplier para cada material:
+Así, Bomb es mejor contra piedra, los Blues son mejores contra cristal y Chuck es mejor contra madera.

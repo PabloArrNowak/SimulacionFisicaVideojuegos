@@ -21,6 +21,8 @@
 #include "WindAreaForceGenerator.h"
 #include "TornadoAreaForceGenerator.h"
 #include "BallParticle.h"
+#include "ExplosionForceGenerator.h"
+#include "ExplosionExpandingForceGenerator.h"
 
 
 
@@ -48,6 +50,12 @@ std::vector<Projectile*> projectiles;
 
 ParticleSystem* partSystem;
 ParticleGenerator* currentGen;
+Particle* currentParticle;
+
+std::vector<ExplosionForceGenerator*> explosionFs;
+ExplosionForceGenerator* explosionFAux;
+WindAreaForceGenerator* windF;
+TornadoAreaForceGenerator* tornadoF;
 
 
 // Initialize physics engine
@@ -89,11 +97,6 @@ void initPhysics(bool interactive)
 	GravityForceGenerator* gravF = new GravityForceGenerator(Vector3(0, -10, 0));
 	partSystem->addForceGen(gravF);
 
-	// WindAreaForceGenerator* windF = new WindAreaForceGenerator(Vector3(0, 20, 0), Vector3(0, 0, -10), Vector3(50, 20, 50));
-	// partSystem->addForceGen(windF);
-
-	TornadoAreaForceGenerator* tornadoF = new TornadoAreaForceGenerator(2, Vector3(0, 0, -10), Vector3(20, 20, 20));
-	partSystem->addForceGen(tornadoF);
 }
 
 
@@ -118,6 +121,15 @@ void stepPhysics(bool interactive, double t)
 			delete p;
 		}
 	}
+
+	for (int i = 0; i < explosionFs.size(); i++)
+	{
+		explosionFs[i]->updateGenerator(t);
+		if (explosionFs[i]->getTimeSinceActivation() > 2.0) {
+			partSystem->removeForceGen(explosionFs[i]);
+		}
+	}
+
 }
 
 // Function to clean data
@@ -169,9 +181,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		}
 		partSystem->resetParticles();
 		currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, 0, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 0.5);
-		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
+		currentParticle = new WaterDropParticle(0.5, 0.5);
+		currentGen->setParticle(currentParticle);
 		partSystem->setGenerator(currentGen);
 		break;
+
 	case '2':
 		if (currentGen != nullptr) {
 			delete currentGen;
@@ -179,9 +193,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		}
 		partSystem->resetParticles();
 		currentGen = new GaussianParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), 3.5, Vector3(0.5, 0.2, 0.5), Vector3(1.25, 0.5, 1.25), 0.5);
-		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
+		currentParticle = new WaterDropParticle(0.5, 0.5);
+		currentGen->setParticle(currentParticle);
 		partSystem->setGenerator(currentGen);
 		break;
+
 	case '3':
 		if (currentGen != nullptr) {
 			delete currentGen;
@@ -189,9 +205,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		}
 		partSystem->resetParticles();
 		currentGen = new SimpleParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), Vector3(0, 0, 0), 3.5, Vector3(5, 0, 5), Vector3(10, 5, 10), 0.5, 0.5);
-		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
+		currentParticle = new WaterDropParticle(0.5, 0.5);
+		currentGen->setParticle(currentParticle);
 		partSystem->setGenerator(currentGen);
 		break;
+
 	case '4':
 		if (currentGen != nullptr) {
 			delete currentGen;
@@ -199,9 +217,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		}
 		partSystem->resetParticles();
 		currentGen = new GaussianParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), 3.5, Vector3(1.25, 0.2, 1.25), Vector3(2.5, 1.25, 2.5), 0.5);
-		currentGen->setParticle(new WaterDropParticle(0.5, 0.5));
+		currentParticle = new WaterDropParticle(0.5, 0.5);
+		currentGen->setParticle(currentParticle);
 		partSystem->setGenerator(currentGen);
 		break;
+
 	case '5':
 		if (currentGen != nullptr) {
 			delete currentGen;
@@ -211,6 +231,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		partSystem->generateFirework(2, Vector3(0, 2, -10), Vector3(0, 25, 0));
 		partSystem->setGenerator(currentGen);
 		break;
+
 	case '6':
 		if (currentGen != nullptr) {
 			delete currentGen;
@@ -218,9 +239,45 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		}
 		partSystem->resetParticles();
 		currentGen = new GaussianParticleGenerator(Vector3(0, 20, -10), Vector3(0, 0, 0), 5, Vector3(3, 0.5, 3), Vector3(2.5, 1.25, 2.5), 0.5);
-		currentGen->setParticle(new BallParticle(2, 2));
+		currentParticle = new BallParticle(2, 2);
+		currentGen->setParticle(currentParticle);
 		partSystem->setGenerator(currentGen);
 		break;
+
+	case '7':
+		if (windF == nullptr) {
+			windF = new WindAreaForceGenerator(Vector3(0, 20, 0), Vector3(0, 0, -10), Vector3(50, 20, 50));
+			partSystem->addForceGen(windF);
+		}
+		else {
+			partSystem->removeForceGen(windF);
+			windF = nullptr;
+		}
+		break;
+
+	case '8':
+		if (tornadoF == nullptr) {
+			tornadoF = new TornadoAreaForceGenerator(2, Vector3(0, 0, -10), Vector3(20, 20, 20));
+			partSystem->addForceGen(tornadoF);
+		}
+		else {
+			partSystem->removeForceGen(tornadoF);
+			tornadoF = nullptr;
+		}
+		break;
+
+	case '9':
+		explosionFAux = new ExplosionForceGenerator(Vector3(0, 15, -10), 50.0, 100000.0, 0.1);
+		explosionFs.push_back(explosionFAux);
+		partSystem->addForceGen(explosionFAux);
+		break;
+		
+	case '0':
+		explosionFAux = new ExplosionExpandingForceGenerator(Vector3(0, 15, -10), 50.0, 100000.0, 0.1, 2.0);
+		explosionFs.push_back(explosionFAux);
+		partSystem->addForceGen(explosionFAux);
+		break;
+
 	default:
 		break;
 	}
