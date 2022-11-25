@@ -2,6 +2,8 @@
 #include "ParticleGenerator.h"
 #include "ForceGenerator.h"
 #include "Firework.h"
+#include "SpringForceGenerator.h"
+#include "AnchoredSpringForceGenerator.h"
 
 ParticleSystem::ParticleSystem()
 {
@@ -20,8 +22,10 @@ void ParticleSystem::update(double t)
 			particles.push_back(part);
 			// Add to partForceRegistry
 			for (ForceGenerator* force : forceGenerators) {
-				partForceRegistry.addRegistry(force, part);
-				part->resetForces();
+				if (force->getAffectsAll()) {
+					partForceRegistry.addRegistry(force, part);
+					part->resetForces();
+				}
 			}
 		}
 	}
@@ -88,8 +92,10 @@ void ParticleSystem::generateFirework(unsigned type, const Vector3& pos, const V
 
 	fireworks.push_back(fw);
 	for (ForceGenerator* force : forceGenerators) {
-		partForceRegistry.addRegistry(force, fw);
-		fw->resetForces();
+		if (force->getAffectsAll()) {
+			partForceRegistry.addRegistry(force, fw);
+			fw->resetForces();
+		}
 	}
 }
 
@@ -133,8 +139,42 @@ void ParticleSystem::resetParticles()
 {
 	for (auto it = particles.begin(); it != particles.end();) {
 			Particle* del = *it;
-			it = particles.erase(it);
-			partForceRegistry.deleteParticle(del);
-			delete del;
+			if (del->getResets()) {
+				it = particles.erase(it);
+				partForceRegistry.deleteParticle(del);
+				delete del;
+			}
+			else it++;
 	}
+}
+
+void ParticleSystem::createSpring(Particle* p1, Particle* p2, double restingLength, double springK)
+{
+	SpringForceGenerator* f1 = new SpringForceGenerator(springK, restingLength, p2);
+	SpringForceGenerator* f2 = new SpringForceGenerator(springK, restingLength, p1);
+
+	partForceRegistry.addRegistry(f1, p1);
+	partForceRegistry.addRegistry(f2, p2);
+
+	forceGenerators.push_back(f1);
+	forceGenerators.push_back(f2);
+
+	particles.push_back(p1);
+	particles.push_back(p2);
+}
+
+void ParticleSystem::createAnchoredSpring(Particle* p1, const Vector3& anchorPos, double restingLength, double springK)
+{
+	AnchoredSpringForceGenerator* f = new AnchoredSpringForceGenerator(springK, restingLength, anchorPos);
+
+	partForceRegistry.addRegistry(f, p1);
+	forceGenerators.push_back(f);
+
+	particles.push_back(p1);
+}
+
+void ParticleSystem::createSlinky(int joints, double springK, double restingTotalLength, Particle* partTemplate, Vector3 anchorPos)
+{
+	vector<Particle*> parts;
+
 }

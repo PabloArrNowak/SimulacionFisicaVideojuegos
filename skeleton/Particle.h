@@ -18,6 +18,11 @@ protected:
 
 	Vector3 totalForce;
 
+	bool resets = true;
+
+	Vector3 flotationColliderCenter;
+	double flotationColliderWidth, flotationColliderHeight, flotationColliderDepth;
+
 
 public:
 	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double Damping, float Mass, float lifeTime, Vector4 color, float radius);
@@ -40,6 +45,25 @@ public:
 	Vector3 getPos() {
 		return pos.p;
 	}
+
+	Vector3 getFlotationColliderCenter() {
+		return flotationColliderCenter;
+	}
+
+	double getFlotationColliderWidth() {
+		return flotationColliderWidth;
+	}
+
+	double getFlotationColliderHeight() {
+		return flotationColliderHeight;
+	}
+
+	double getFlotationColliderDepth() {
+		return flotationColliderDepth;
+	}
+
+	void setResets(bool set) { resets = set; };
+	bool getResets() { return resets; };
 
 	void resetForces();
 	void addForce(const Vector3& force);

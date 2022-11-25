@@ -1,7 +1,7 @@
 #include "ExplosionForceGenerator.h"
 #include "Particle.h"
 
-ExplosionForceGenerator::ExplosionForceGenerator(const Vector3& areaCenter, double areaRadius, double K, double timeK)
+ExplosionForceGenerator::ExplosionForceGenerator(const Vector3& areaCenter, double areaRadius, double K, double timeK) : ForceGenerator(true)
 {
 	this->areaCenter = areaCenter;
 	this->areaRadius = areaRadius;

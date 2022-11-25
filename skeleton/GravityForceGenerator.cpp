@@ -1,7 +1,7 @@
 #include "GravityForceGenerator.h"
 #include "Particle.h"
 
-GravityForceGenerator::GravityForceGenerator(const Vector3& g)
+GravityForceGenerator::GravityForceGenerator(const Vector3& g) : ForceGenerator(true)
 {
 	setGravity(g);
 }

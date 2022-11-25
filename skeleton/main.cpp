@@ -57,6 +57,8 @@ ExplosionForceGenerator* explosionFAux;
 WindAreaForceGenerator* windF;
 TornadoAreaForceGenerator* tornadoF;
 
+Particle* springExParticle;
+
 
 // Initialize physics engine
 void initPhysics(bool interactive)
@@ -87,15 +89,23 @@ void initPhysics(bool interactive)
 	partSystem = new ParticleSystem();
 
 	// Fuente
-	// currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
-	currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, 0, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
-	currentGen->setParticle(new WaterDropParticle(0.5, 2.0));
-	partSystem->setGenerator(currentGen);
+	//// currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
+	////currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, 0, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
+	//currentGen->setParticle(new WaterDropParticle(0.5, 2.0));
+	/*partSystem->setGenerator(currentGen);*/
 
 	partSystem->generateFireworkSystem();
 
 	GravityForceGenerator* gravF = new GravityForceGenerator(Vector3(0, -10, 0));
 	partSystem->addForceGen(gravF);
+
+	// Spring Example/s
+	Vector3 anchor = { 0, 30, -10 };
+	springExParticle = new Particle({ 8, 20, -18 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 1, 1, 0, 1 }, 2);
+	springExParticle->setResets(false);
+
+	partSystem->createAnchoredSpring(springExParticle, anchor, 15, 8);
+	partSystem->addToPartFRegistry(springExParticle, gravF);
 
 }
 
@@ -156,6 +166,8 @@ void cleanupPhysics(bool interactive)
 	for (auto p : projectiles) {
 		delete p;
 	}
+
+	// delete springExParticle;
 }
 
 // Function called when a key is pressed
@@ -272,10 +284,19 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		partSystem->addForceGen(explosionFAux);
 		break;
 		
-	case '0':
+	/*case '0':
 		explosionFAux = new ExplosionExpandingForceGenerator(Vector3(0, 15, -10), 50.0, 100000.0, 0.1, 2.0);
 		explosionFs.push_back(explosionFAux);
 		partSystem->addForceGen(explosionFAux);
+		break;*/
+
+	case '0':
+		if (currentGen != nullptr) {
+			delete currentGen;
+			currentGen = nullptr;
+		}
+		partSystem->resetParticles();
+		partSystem->setGenerator(currentGen);
 		break;
 
 	default:

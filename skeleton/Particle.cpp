@@ -6,12 +6,14 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double Damping, float 
 	damping = Damping;
 	pos = physx::PxTransform(Pos.x, Pos.y, Pos.z);
 	renderItem = new RenderItem(CreateShape(physx::PxSphereGeometry(radius)), &pos, color);
+	resetForces();
 }
 
 Particle::Particle(Particle* other, Vector3 newPos, Vector3 newVel, Vector3 newAcc, float newLifeTime) : 
 	pos(newPos), vel(newVel), acc(newAcc), damping(other->damping), invMass(other->invMass), timeLeft(newLifeTime), alive(true)
 {
 	renderItem = new RenderItem(other->renderItem->shape, &pos, other->renderItem->color);
+	resetForces();
 }
 
 Particle::~Particle()
@@ -33,9 +35,9 @@ bool Particle::update(double t)
 
 	resetForces();
 
-	timeLeft -= t;
+	if (timeLeft != -1) timeLeft -= t;
 
-	if (pos.p.y < 0 || timeLeft < 0) return false;
+	if (pos.p.y < 0 || (timeLeft != -1 && timeLeft < 0)) return false;
 	return true;
 }
 

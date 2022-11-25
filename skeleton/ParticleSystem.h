@@ -44,5 +44,11 @@ public:
 	void addForceGen(ForceGenerator* gen) { forceGenerators.push_back(gen); };
 	void removeForceGen(ForceGenerator* gen) { forceGenerators.remove(gen); };
 
+	void addToPartFRegistry(Particle* part, ForceGenerator* f) { partForceRegistry.addRegistry(f, part); };
+
+	void createSpring(Particle* p1, Particle* p2, double restingLength, double springK);
+	void createAnchoredSpring(Particle* p1, const Vector3& anchorPos, double restingLength, double springK);
+	void createSlinky(int joints, double springK, double restingTotalLength, Particle* partTemplate, Vector3 anchorPos);
+
 };
 

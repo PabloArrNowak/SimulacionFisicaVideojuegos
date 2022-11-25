@@ -1,7 +1,7 @@
 #include "WindForceGenerator.h"
 #include "Particle.h"
 
-WindForceGenerator::WindForceGenerator(const Vector3& dir)
+WindForceGenerator::WindForceGenerator(const Vector3& dir) : ForceGenerator(true)
 {
 	setWindDir(dir);
 }

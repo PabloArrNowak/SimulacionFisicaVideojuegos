@@ -1,6 +1,6 @@
 #include "ForceGenerator.h"
 
-ForceGenerator::ForceGenerator()
+ForceGenerator::ForceGenerator(bool affectsAll) : affectsAll(affectsAll)
 {
 }
 
