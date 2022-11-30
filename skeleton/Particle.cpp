@@ -37,7 +37,8 @@ bool Particle::update(double t)
 
 	if (timeLeft != -1) timeLeft -= t;
 
-	if (pos.p.y < 0 || (timeLeft != -1 && timeLeft < 0)) return false;
+	// if (pos.p.y < 0 || (timeLeft != -1 && timeLeft < 0)) return false;
+	if (timeLeft != -1 && timeLeft < 0) return false;
 	return true;
 }
 

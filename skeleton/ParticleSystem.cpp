@@ -175,6 +175,34 @@ void ParticleSystem::createAnchoredSpring(Particle* p1, const Vector3& anchorPos
 
 void ParticleSystem::createSlinky(int joints, double springK, double restingTotalLength, Particle* partTemplate, Vector3 anchorPos)
 {
-	vector<Particle*> parts;
+	Particle* p1 = new Particle(partTemplate, Vector3(anchorPos.x, anchorPos.y - (restingTotalLength / joints), anchorPos.z), { 0, 0, 0 }, { 0, 0, 0 }, -1);
+	p1->resetForces();
+
+	AnchoredSpringForceGenerator* f = new AnchoredSpringForceGenerator(springK, restingTotalLength / joints, anchorPos);
+
+	partForceRegistry.addRegistry(f, p1);
+	forceGenerators.push_back(f);
+
+	particles.push_back(p1);
+
+
+	for (int i = 1; i < joints; i++)
+	{
+		Particle* p2 = new Particle(partTemplate, Vector3(anchorPos.x, anchorPos.y - (restingTotalLength / joints * i) - 1, anchorPos.z), { 0, 0, 0 }, { 0, 0, 0 }, -1);
+		p2->resetForces();
+
+		SpringForceGenerator* f1 = new SpringForceGenerator(springK, restingTotalLength / joints, p2);
+		SpringForceGenerator* f2 = new SpringForceGenerator(springK, restingTotalLength / joints, p1);
+
+		partForceRegistry.addRegistry(f1, p1);
+		partForceRegistry.addRegistry(f2, p2);
+
+		forceGenerators.push_back(f1);
+		forceGenerators.push_back(f2);
+
+		particles.push_back(p2);
+
+		p1 = p2;
+	}
 
 }

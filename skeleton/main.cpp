@@ -23,6 +23,7 @@
 #include "BallParticle.h"
 #include "ExplosionForceGenerator.h"
 #include "ExplosionExpandingForceGenerator.h"
+#include "BuoyancyForceGenerator.h"
 
 
 
@@ -58,6 +59,10 @@ WindAreaForceGenerator* windF;
 TornadoAreaForceGenerator* tornadoF;
 
 Particle* springExParticle;
+Particle* springPart2;
+Particle* springPart1;
+
+BuoyancyForceGenerator* buoyF;
 
 
 // Initialize physics engine
@@ -99,13 +104,13 @@ void initPhysics(bool interactive)
 	GravityForceGenerator* gravF = new GravityForceGenerator(Vector3(0, -10, 0));
 	partSystem->addForceGen(gravF);
 
-	// Spring Example/s
-	Vector3 anchor = { 0, 30, -10 };
-	springExParticle = new Particle({ 8, 20, -18 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 1, 1, 0, 1 }, 2);
-	springExParticle->setResets(false);
+	//// Spring Example/s
+	//Vector3 anchor = { 0, 30, -10 };
+	//springExParticle = new Particle({ 8, 20, -18 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 1, 1, 0, 1 }, 2);
+	//springExParticle->setResets(false);
 
-	partSystem->createAnchoredSpring(springExParticle, anchor, 15, 8);
-	partSystem->addToPartFRegistry(springExParticle, gravF);
+	//partSystem->createAnchoredSpring(springExParticle, anchor, 15, 10);
+	//partSystem->addToPartFRegistry(springExParticle, gravF);
 
 }
 
@@ -297,6 +302,44 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		}
 		partSystem->resetParticles();
 		partSystem->setGenerator(currentGen);
+		break;
+		
+	case 'Q':
+		if (currentGen != nullptr) {
+			delete currentGen;
+			currentGen = nullptr;
+		}
+		partSystem->resetParticles();
+		partSystem->setGenerator(currentGen);
+
+		springPart1 = new Particle({ 8, 20, -18 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 0, 1, 1, 1 }, 2);
+		springPart2 = new Particle({ 18, 20, -10 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 0, 1, 1, 1 }, 2);
+		springPart1->setResets(false);
+		springPart2->setResets(false);
+
+		partSystem->createSpring(springPart1, springPart2, 25, 10);
+		break;
+		
+	case 'E':
+		if (currentGen != nullptr) {
+			delete currentGen;
+			currentGen = nullptr;
+		}
+		partSystem->resetParticles();
+		partSystem->setGenerator(currentGen);
+
+		partSystem->createSlinky(5, 5, 100, new Particle({ 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 0, 1, 1, 1 }, 2), { 10, 100, -10});
+		break;
+		
+	case 'R':
+		if (buoyF == nullptr) {
+			buoyF = new BuoyancyForceGenerator(7, 1, 2);
+			partSystem->addForceGen(buoyF);
+		}
+		else {
+			partSystem->removeForceGen(buoyF);
+			buoyF = nullptr;
+		}
 		break;
 
 	default:

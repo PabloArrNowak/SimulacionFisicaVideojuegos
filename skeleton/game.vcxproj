@@ -254,6 +254,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnchoredSpringForceGenerator.cpp" />
+    <ClCompile Include="BuoyancyForceGenerator.cpp" />
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="ExplosionExpandingForceGenerator.cpp" />
     <ClCompile Include="ExplosionForceGenerator.cpp" />
@@ -280,6 +281,7 @@
   <ItemGroup>
     <ClInclude Include="AnchoredSpringForceGenerator.h" />
     <ClInclude Include="BallParticle.h" />
+    <ClInclude Include="BuoyancyForceGenerator.h" />
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="ExplosionExpandingForceGenerator.h" />

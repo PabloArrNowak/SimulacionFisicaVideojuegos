@@ -64,6 +64,9 @@
     <ClCompile Include="AnchoredSpringForceGenerator.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="BuoyancyForceGenerator.cpp">
+      <Filter>Practicas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -133,6 +136,9 @@
       <Filter>Practicas</Filter>
     </ClInclude>
     <ClInclude Include="AnchoredSpringForceGenerator.h">
+      <Filter>Practicas</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancyForceGenerator.h">
       <Filter>Practicas</Filter>
     </ClInclude>
   </ItemGroup>
