@@ -12,7 +12,7 @@ Estructura de piedra en el centro, barquitos de madera flotando en agua a los la
 
 Nivel 3:
 
-Estructura de cristal, piedra y madera, con corrientes de viento que dificultan el tiro (Imanes?)
+Estructura de cristal, piedra y madera, con corrientes de viento que dificultan el tiro (Imanes?) (
 
 
 Pájaros:
@@ -26,3 +26,5 @@ Pájaros:
 
 Cada pájaro tiene un damageMultiplier para cada material:
 Así, Bomb es mejor contra piedra, los Blues son mejores contra cristal y Chuck es mejor contra madera.
+
+No usar raycasts: Se tensa el tirachinas con según la posición del ratón desde que se empezó a pulsar.

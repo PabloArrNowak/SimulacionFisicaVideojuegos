@@ -67,6 +67,21 @@
     <ClCompile Include="BuoyancyForceGenerator.cpp">
       <Filter>Practicas</Filter>
     </ClCompile>
+    <ClCompile Include="AngryBirdsObject.cpp">
+      <Filter>AngryBirds</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingBlock.cpp">
+      <Filter>AngryBirds</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundBlock.cpp">
+      <Filter>AngryBirds</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>AngryBirds</Filter>
+    </ClCompile>
+    <ClCompile Include="Bird.cpp">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -141,6 +156,21 @@
     <ClInclude Include="BuoyancyForceGenerator.h">
       <Filter>Practicas</Filter>
     </ClInclude>
+    <ClInclude Include="AngryBirdsObject.h">
+      <Filter>AngryBirds</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingBlock.h">
+      <Filter>AngryBirds</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundBlock.h">
+      <Filter>AngryBirds</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>AngryBirds</Filter>
+    </ClInclude>
+    <ClInclude Include="Bird.h">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
@@ -148,6 +178,12 @@
     </Filter>
     <Filter Include="Practicas">
       <UniqueIdentifier>{1b029bb1-eae2-406c-bab4-16ac937688fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AngryBirds">
+      <UniqueIdentifier>{22adc470-73d4-43af-adbd-feaef0c3c716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AngryBirds\Birds">
+      <UniqueIdentifier>{a1b70149-298b-4e31-9c97-9e93ef58af3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

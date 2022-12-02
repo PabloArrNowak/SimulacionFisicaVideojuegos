@@ -24,6 +24,7 @@ void ExplosionForceGenerator::updateForce(Particle* particle, double t)
 	if (fabs(particle->getInvMass()) < 1e-10)
 		return;
 
+	// Usar funcion especifica de e
 	Vector3 f = K / (areaRadius * areaRadius) * getExplosionDir(particle) * pow(std::_Exp1, (-timeSinceActivation / timeK));
 	particle->addForce(f);
 }

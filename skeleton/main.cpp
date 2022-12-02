@@ -314,8 +314,8 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 		springPart1 = new Particle({ 8, 20, -18 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 0, 1, 1, 1 }, 2);
 		springPart2 = new Particle({ 18, 20, -10 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 0, 1, 1, 1 }, 2);
-		springPart1->setResets(false);
-		springPart2->setResets(false);
+		springPart1->setResets(true);
+		springPart2->setResets(true);
 
 		partSystem->createSpring(springPart1, springPart2, 25, 10);
 		break;
@@ -328,7 +328,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		partSystem->resetParticles();
 		partSystem->setGenerator(currentGen);
 
-		partSystem->createSlinky(5, 5, 100, new Particle({ 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 0, 1, 1, 1 }, 2), { 10, 100, -10});
+		partSystem->createSlinky(5, 5, 100, new Particle({ 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 0, 1, 1, 1 }, 2), { 10, 100, -10 });
 		break;
 		
 	case 'R':

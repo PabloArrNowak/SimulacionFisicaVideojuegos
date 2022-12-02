@@ -175,6 +175,8 @@ void ParticleSystem::createAnchoredSpring(Particle* p1, const Vector3& anchorPos
 
 void ParticleSystem::createSlinky(int joints, double springK, double restingTotalLength, Particle* partTemplate, Vector3 anchorPos)
 {
+	// Primera Part después de pivote
+
 	Particle* p1 = new Particle(partTemplate, Vector3(anchorPos.x, anchorPos.y - (restingTotalLength / joints), anchorPos.z), { 0, 0, 0 }, { 0, 0, 0 }, -1);
 	p1->resetForces();
 
@@ -185,8 +187,8 @@ void ParticleSystem::createSlinky(int joints, double springK, double restingTota
 
 	particles.push_back(p1);
 
-
-	for (int i = 1; i < joints; i++)
+	// Demás Parts
+	for (int i = 2; i < joints; i++)
 	{
 		Particle* p2 = new Particle(partTemplate, Vector3(anchorPos.x, anchorPos.y - (restingTotalLength / joints * i) - 1, anchorPos.z), { 0, 0, 0 }, { 0, 0, 0 }, -1);
 		p2->resetForces();
