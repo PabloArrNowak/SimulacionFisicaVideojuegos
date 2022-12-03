@@ -2,12 +2,15 @@
 
 #include<PxPhysicsAPI.h>
 #include <list>
+class AngryBirdsObject;
 using namespace physx;
 
 class Bird;
 
 class LevelManager
 {
+	std::list<AngryBirdsObject*> sceneObjects;
+
 	std::list<Bird*> birds; // Front is active / flying
 	PxScene* gScene = nullptr;
 

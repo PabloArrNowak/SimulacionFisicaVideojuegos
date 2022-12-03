@@ -1,10 +1,10 @@
 #include "GroundBlock.h"
 
-GroundBlock::GroundBlock(Vector3 pos, Vector3 size)
+GroundBlock::GroundBlock(Vector3 pos, Vector3 size) : AngryBirdsObject()
 {
 	HP = -1;
 
-	Vector4 color(0.2, 0.1, 0.2, 1);
+	Vector4 color(97.0 / 255, 49.0 / 255, 47.0 / 255, 1);
 
 	physx::PxTransform posPxT(pos);
 	rb = PxGetPhysics().createRigidStatic(posPxT);

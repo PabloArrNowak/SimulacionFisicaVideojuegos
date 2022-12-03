@@ -16,5 +16,12 @@ protected:
 	bool destroysOthers;
 
 	RenderItem* renderItem;
+
+public:
+
+	AngryBirdsObject();
+	AngryBirdsObject(int hp, bool destroysOther, RenderItem* renderIt);
+	~AngryBirdsObject();
+
 };
 

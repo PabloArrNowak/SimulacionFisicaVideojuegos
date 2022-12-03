@@ -3,7 +3,7 @@
 #include "core.hpp"
 #include "AngryBirdsObject.h"
 
-class GroundBlock : AngryBirdsObject
+class GroundBlock : public AngryBirdsObject
 {
 protected:
 

@@ -12,6 +12,7 @@ LevelManager::~LevelManager()
 void LevelManager::startLevel(int level)
 {
 	clearBlocks();
+
 	switch (level)
 	{
 	case 1:
@@ -26,4 +27,24 @@ void LevelManager::startLevel(int level)
 	default:
 		break;
 	}
+}
+
+void LevelManager::clearBlocks()
+{
+
+}
+
+void LevelManager::setupLevel1()
+{
+
+}
+
+void LevelManager::setupLevel2()
+{
+
+}
+
+void LevelManager::setupLevel3()
+{
+
 }

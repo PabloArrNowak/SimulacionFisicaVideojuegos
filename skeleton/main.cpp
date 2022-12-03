@@ -24,6 +24,9 @@
 #include "ExplosionForceGenerator.h"
 #include "ExplosionExpandingForceGenerator.h"
 #include "BuoyancyForceGenerator.h"
+#include "AngryBirdsObject.h"
+#include "LevelManager.h"
+#include "GroundBlock.h"
 
 
 
@@ -65,6 +68,44 @@ Particle* springPart1;
 BuoyancyForceGenerator* buoyF;
 
 
+
+// ---  Angry Birds  ---
+
+LevelManager* levelManager;
+GroundBlock* floorBlock;
+vector<RenderItem*> slingshot;
+vector<PxTransform> slingshotTr;
+vector<Vector3> slingshotPos;
+
+
+
+
+
+void createSlingShotShape() {
+
+	slingshot = vector<RenderItem*>(4);
+	slingshotTr = vector<PxTransform>(4);
+	slingshotPos = vector<Vector3>(4);
+
+	slingshotPos[0] = Vector3(-1000, 50, 0);
+	slingshotTr[0] = PxTransform(slingshotPos[0]);
+	slingshot[0] = new RenderItem(CreateShape(physx::PxBoxGeometry(20, 100, 20)), &slingshotTr[0], {0.5, 0.2, 0, 1});
+
+	slingshotPos[1] = Vector3(-1000, 150, 0);
+	slingshotTr[1] = PxTransform(slingshotPos[1]);
+	slingshot[1] = new RenderItem(CreateShape(physx::PxBoxGeometry(20, 20, 100)), &slingshotTr[1], { 0.5, 0.2, 0, 1 });
+
+	slingshotPos[2] = Vector3(-1000, 200, 100);
+	slingshotTr[2] = PxTransform(slingshotPos[2]);
+	slingshot[2] = new RenderItem(CreateShape(physx::PxBoxGeometry(20, 50, 20)), &slingshotTr[2], { 0.5, 0.2, 0, 1 });
+
+	slingshotPos[3] = Vector3(-1000, 200, -100);
+	slingshotTr[3] = PxTransform(slingshotPos[3]);
+	slingshot[3] = new RenderItem(CreateShape(physx::PxBoxGeometry(20, 50, 20)), &slingshotTr[3], { 0.5, 0.2, 0, 1 });
+
+
+}
+
 // Initialize physics engine
 void initPhysics(bool interactive)
 {
@@ -89,7 +130,7 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	plane = new Plane(Vector3(0, -3, 0));
+    // plane = new Plane(Vector3(0, -3, 0));
 
 	partSystem = new ParticleSystem();
 
@@ -112,7 +153,16 @@ void initPhysics(bool interactive)
 	//partSystem->createAnchoredSpring(springExParticle, anchor, 15, 10);
 	//partSystem->addToPartFRegistry(springExParticle, gravF);
 
+
+	// ---  Angry Birds  ---
+
+	levelManager = new LevelManager(gScene);
+	floorBlock = new GroundBlock({ 0, 0, 0 }, { 8000, 0.1, 8000 });
+
+	createSlingShotShape();
+
 }
+
 
 
 // Function to configure what happens in each step of physics
@@ -125,17 +175,17 @@ void stepPhysics(bool interactive, double t)
 	gScene->simulate(t);
 	gScene->fetchResults(true);
 
-	plane->update(t);
+	// plane->update(t);
 	partSystem->update(t);
 
-	for (int i = 0; i < projectiles.size(); i++) {
+	/*for (int i = 0; i < projectiles.size(); i++) {
 		projectiles[i]->update(t);
 		if (!projectiles[i]->getAlive()) {
 			Projectile* p = projectiles[i];
 			projectiles.erase(projectiles.begin() + i);
 			delete p;
 		}
-	}
+	}*/
 
 	for (int i = 0; i < explosionFs.size(); i++)
 	{
@@ -164,15 +214,23 @@ void cleanupPhysics(bool interactive)
 	
 	gFoundation->release();
 
-	delete plane;
-
 	delete partSystem;
+
+	/*delete plane;
+
 
 	for (auto p : projectiles) {
 		delete p;
-	}
+	}*/
 
 	// delete springExParticle;
+
+
+	// ---  Angry Birds  ---
+
+	delete floorBlock;
+	delete levelManager;
+
 }
 
 // Function called when a key is pressed
@@ -182,6 +240,9 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 	switch(toupper(key))
 	{
+		// Practicas
+
+		/*
 	case ' ':
 	{
 		Vector3 front = camera.q.getBasisVector2().getNormalized();
@@ -289,11 +350,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		partSystem->addForceGen(explosionFAux);
 		break;
 		
-	/*case '0':
+	case 'T':
 		explosionFAux = new ExplosionExpandingForceGenerator(Vector3(0, 15, -10), 50.0, 100000.0, 0.1, 2.0);
 		explosionFs.push_back(explosionFAux);
 		partSystem->addForceGen(explosionFAux);
-		break;*/
+		break;
 
 	case '0':
 		if (currentGen != nullptr) {
@@ -340,6 +401,22 @@ void keyPress(unsigned char key, const PxTransform& camera)
 			partSystem->removeForceGen(buoyF);
 			buoyF = nullptr;
 		}
+		break;
+		*/
+
+		
+		// Angry Birds
+
+	case '1':
+		levelManager->startLevel(1);
+		break;
+
+	case '2':
+		levelManager->startLevel(2);
+		break;
+
+	case '3':
+		levelManager->startLevel(3);
 		break;
 
 	default:
