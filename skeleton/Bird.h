@@ -12,6 +12,8 @@ protected:
 	bool powerAvailable; // Not Fliying, PowerAvailable means in Slingshot if it is Front
 	double timeLeft; // Decreases after hit
 
+	physx::PxRigidDynamic* rb;
+
 public:
 
 	Bird();
@@ -20,5 +22,9 @@ public:
 	virtual void activatePower() {
 		powerAvailable = false;
 	}
+
+	virtual bool update(double t) override;
+	void resetForces() override { rb->clearForce(); };
+	physx::PxActor* getRB() override { return rb; };
 };
 

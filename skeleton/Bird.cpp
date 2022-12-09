@@ -9,3 +9,8 @@ Bird::~Bird()
 {
 
 }
+
+bool Bird::update(double t)
+{
+	return false;
+}

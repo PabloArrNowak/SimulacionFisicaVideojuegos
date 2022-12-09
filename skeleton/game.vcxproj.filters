@@ -82,6 +82,15 @@
     <ClCompile Include="Bird.cpp">
       <Filter>AngryBirds\Birds</Filter>
     </ClCompile>
+    <ClCompile Include="RBSystem.cpp">
+      <Filter>RBs</Filter>
+    </ClCompile>
+    <ClCompile Include="RBForceGenerator.cpp">
+      <Filter>RBs</Filter>
+    </ClCompile>
+    <ClCompile Include="RBForceRegistry.cpp">
+      <Filter>RBs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -171,6 +180,15 @@
     <ClInclude Include="Bird.h">
       <Filter>AngryBirds\Birds</Filter>
     </ClInclude>
+    <ClInclude Include="RBSystem.h">
+      <Filter>RBs</Filter>
+    </ClInclude>
+    <ClInclude Include="RBForceGenerator.h">
+      <Filter>RBs</Filter>
+    </ClInclude>
+    <ClInclude Include="RBForceRegistry.h">
+      <Filter>RBs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
@@ -184,6 +202,9 @@
     </Filter>
     <Filter Include="AngryBirds\Birds">
       <UniqueIdentifier>{a1b70149-298b-4e31-9c97-9e93ef58af3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RBs">
+      <UniqueIdentifier>{9c89f5d9-85f6-4763-9909-d82986ffc0e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

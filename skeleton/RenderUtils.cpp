@@ -139,7 +139,7 @@ void renderLoop()
 	StartCounter();
 	sCamera = new Camera(PxVec3(0.0f, 100.0f, 2000.0f), PxVec3(0, 0.1, -1));
 
-	setupDefaultWindow("Simulacion Fisica Videojuegos");
+	setupDefaultWindow("Simulacion Fisica Videojuegos: Angry Birds");
 	setupDefaultRenderState();
 
 	glutIdleFunc(idleCallback);

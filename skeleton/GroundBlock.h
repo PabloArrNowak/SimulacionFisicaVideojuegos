@@ -15,5 +15,6 @@ public:
 	GroundBlock(Vector3 pos, Vector3 size);
 	~GroundBlock();
 
+	physx::PxActor* getRB() override { return rb; };
 };
 

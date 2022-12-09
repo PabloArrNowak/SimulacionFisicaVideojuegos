@@ -3,7 +3,7 @@
 #include "core.hpp"
 #include "AngryBirdsObject.h"
 
-class BuildingBlock : AngryBirdsObject
+class BuildingBlock : public AngryBirdsObject
 {
 
 protected:
@@ -17,5 +17,7 @@ public:
 	BuildingBlock(Vector3 pos, Vector3 size, blockMat bMaterial, int hp);
 	~BuildingBlock();
 
+	void resetForces() override { rb->clearForce(); };
+	physx::PxActor* getRB() override { return rb; };
 };
 

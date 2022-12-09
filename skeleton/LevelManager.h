@@ -2,7 +2,10 @@
 
 #include<PxPhysicsAPI.h>
 #include <list>
+
 class AngryBirdsObject;
+class RBSystem;
+
 using namespace physx;
 
 class Bird;
@@ -13,10 +16,11 @@ class LevelManager
 
 	std::list<Bird*> birds; // Front is active / flying
 	PxScene* gScene = nullptr;
+	RBSystem* rbSystem;
 
 public:
 
-	LevelManager(PxScene* gScene);
+	LevelManager(PxScene* gScene, RBSystem* rbSystem);
 	~LevelManager();
 
 	void clearBlocks();
@@ -24,6 +28,8 @@ public:
 
 	Bird* getActiveBird() { return birds.front(); };
 	void nextBird() { birds.pop_front(); };
+
+	void addObject(AngryBirdsObject* obj);
 
 protected:
 

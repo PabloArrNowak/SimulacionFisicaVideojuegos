@@ -1,8 +1,14 @@
 #include "LevelManager.h"
+#include "AngryBirdsObject.h"
+#include "RBForceGenerator.h"
+#include "RBSystem.h"
+#include "BuildingBlock.h"
+#include "GroundBlock.h"
 
-LevelManager::LevelManager(PxScene* gScene)
+LevelManager::LevelManager(PxScene* gScene, RBSystem* rbSystem)
 {
 	this->gScene = gScene;
+	this->rbSystem = rbSystem;
 }
 
 LevelManager::~LevelManager()
@@ -12,6 +18,7 @@ LevelManager::~LevelManager()
 void LevelManager::startLevel(int level)
 {
 	clearBlocks();
+	addObject(new GroundBlock({ 0, -0.3, 0 }, { 8000, 0.5, 8000 }));
 
 	switch (level)
 	{
@@ -31,11 +38,31 @@ void LevelManager::startLevel(int level)
 
 void LevelManager::clearBlocks()
 {
+	// sceneObjects
+}
 
+void LevelManager::addObject(AngryBirdsObject* obj)
+{
+	PxActor* rb = obj->getRB();
+	gScene->addActor(*rb);
+
+	for (RBForceGenerator* force : rbSystem->getForceGenerators()) {
+		if (force->getAffectsAll() && dynamic_cast<GroundBlock*>(obj) != obj) {
+			rbSystem->addToRegistry(obj, force);
+			obj->resetForces();
+		}
+	}
+
+	sceneObjects.push_back(obj);
 }
 
 void LevelManager::setupLevel1()
 {
+	// Primero Fuerzas
+	
+
+	// Luego Objetos, con AddObject
+	addObject(new BuildingBlock({ 50, 0, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 10));
 
 }
 

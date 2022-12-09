@@ -27,6 +27,7 @@
 #include "AngryBirdsObject.h"
 #include "LevelManager.h"
 #include "GroundBlock.h"
+#include "RBSystem.h"
 
 
 
@@ -71,8 +72,8 @@ BuoyancyForceGenerator* buoyF;
 
 // ---  Angry Birds  ---
 
+RBSystem* rbSystem;
 LevelManager* levelManager;
-GroundBlock* floorBlock;
 vector<RenderItem*> slingshot;
 vector<PxTransform> slingshotTr;
 vector<Vector3> slingshotPos;
@@ -156,8 +157,8 @@ void initPhysics(bool interactive)
 
 	// ---  Angry Birds  ---
 
-	levelManager = new LevelManager(gScene);
-	floorBlock = new GroundBlock({ 0, 0, 0 }, { 8000, 0.1, 8000 });
+	rbSystem = new RBSystem();
+	levelManager = new LevelManager(gScene, rbSystem);
 
 	createSlingShotShape();
 
@@ -228,7 +229,7 @@ void cleanupPhysics(bool interactive)
 
 	// ---  Angry Birds  ---
 
-	delete floorBlock;
+	delete rbSystem;
 	delete levelManager;
 
 }

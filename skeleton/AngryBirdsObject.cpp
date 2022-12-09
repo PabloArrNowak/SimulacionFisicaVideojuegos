@@ -17,3 +17,8 @@ AngryBirdsObject::~AngryBirdsObject()
 {
 	DeregisterRenderItem(renderItem);
 }
+
+bool AngryBirdsObject::update(double t)
+{
+	return true;
+}
