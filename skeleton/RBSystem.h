@@ -5,6 +5,7 @@
 #include <list>
 #include <string>
 #include "RBForceGenerator.h"
+#include "LevelManager.h"
 
 class Particle;
 class ParticleGenerator;
@@ -24,9 +25,12 @@ protected:
 	RBForceRegistry rbForceRegistry;
 	std::list<RBForceGenerator*> forceGenerators;
 
+	LevelManager* levelM;
+
 public:
 
 	RBSystem();
+	void setLevelManager(LevelManager* lvlMngr);
 
 	void update(double t);
 	ParticleGenerator* getParticleGenerator(std::string name);
@@ -35,7 +39,16 @@ public:
 	void resetParticles();
 
 	std::list<RBForceGenerator*> getForceGenerators() { return forceGenerators; };
-	void addForceGen(RBForceGenerator* gen) { forceGenerators.push_back(gen); };
+
+	void addForceGen(RBForceGenerator* gen) {
+		forceGenerators.push_back(gen);
+		if (gen->getAffectsAll()) {
+			for (auto obj : levelM->getSceneObjects()) {
+				addToRegistry(obj, gen);
+			}
+		}
+	};
+
 	void removeForceGen(RBForceGenerator* gen) { forceGenerators.remove(gen); };
 
 	void addToRegistry(AngryBirdsObject* obj, RBForceGenerator* f) { rbForceRegistry.addRegistry(f, obj); };

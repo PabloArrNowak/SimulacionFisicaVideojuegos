@@ -28,6 +28,7 @@
 #include "LevelManager.h"
 #include "GroundBlock.h"
 #include "RBSystem.h"
+#include "ExplosionRBForceGenerator.h"
 
 
 
@@ -78,6 +79,8 @@ vector<RenderItem*> slingshot;
 vector<PxTransform> slingshotTr;
 vector<Vector3> slingshotPos;
 
+std::vector<ExplosionRBForceGenerator*> rbExplosionFs;
+ExplosionRBForceGenerator* rbExplosionFAux;
 
 
 
@@ -124,7 +127,7 @@ void initPhysics(bool interactive)
 
 	// For Solid Rigids +++++++++++++++++++++++++++++++++++++
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-	sceneDesc.gravity = PxVec3(0.0f, -9.8f, 0.0f);
+	sceneDesc.gravity = PxVec3(0.0f, -160.0f, 0.0f);
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = contactReportFilterShader;
@@ -141,10 +144,10 @@ void initPhysics(bool interactive)
 	//currentGen->setParticle(new WaterDropParticle(0.5, 2.0));
 	/*partSystem->setGenerator(currentGen);*/
 
-	partSystem->generateFireworkSystem();
+	// partSystem->generateFireworkSystem();
 
-	GravityForceGenerator* gravF = new GravityForceGenerator(Vector3(0, -10, 0));
-	partSystem->addForceGen(gravF);
+	// GravityForceGenerator* gravF = new GravityForceGenerator(Vector3(0, -10, 0));
+	// partSystem->addForceGen(gravF);
 
 	//// Spring Example/s
 	//Vector3 anchor = { 0, 30, -10 };
@@ -159,6 +162,7 @@ void initPhysics(bool interactive)
 
 	rbSystem = new RBSystem();
 	levelManager = new LevelManager(gScene, rbSystem);
+	rbSystem->setLevelManager(levelManager);
 
 	createSlingShotShape();
 
@@ -188,11 +192,21 @@ void stepPhysics(bool interactive, double t)
 		}
 	}*/
 
-	for (int i = 0; i < explosionFs.size(); i++)
+	/*for (int i = 0; i < explosionFs.size(); i++)
 	{
 		explosionFs[i]->updateGenerator(t);
 		if (explosionFs[i]->getTimeSinceActivation() > 2.0) {
 			partSystem->removeForceGen(explosionFs[i]);
+		}
+	}*/
+
+	rbSystem->update(t);
+	
+	for (int i = 0; i < rbExplosionFs.size(); i++)
+	{
+		rbExplosionFs[i]->updateGenerator(t);
+		if (rbExplosionFs[i]->getTimeSinceActivation() > 2.0) {
+			rbSystem->removeForceGen(rbExplosionFs[i]);
 		}
 	}
 
@@ -418,6 +432,12 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 	case '3':
 		levelManager->startLevel(3);
+		break;
+
+	case '9':
+		rbExplosionFAux = new ExplosionRBForceGenerator(Vector3(400, 15, 0), 300.0, 3000000.0, 0.1);
+		rbExplosionFs.push_back(rbExplosionFAux);
+		rbSystem->addForceGen(rbExplosionFAux);
 		break;
 
 	default:

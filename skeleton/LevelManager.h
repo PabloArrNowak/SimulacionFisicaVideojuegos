@@ -30,6 +30,7 @@ public:
 	void nextBird() { birds.pop_front(); };
 
 	void addObject(AngryBirdsObject* obj);
+	std::list<AngryBirdsObject*> getSceneObjects() { return sceneObjects; };
 
 protected:
 

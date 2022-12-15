@@ -19,5 +19,11 @@ public:
 
 	void resetForces() override { rb->clearForce(); };
 	physx::PxActor* getRB() override { return rb; };
+
+	void addForce(Vector3 f) override;
+
+	Vector3 getPos() override {
+		return Vector3(rb->getGlobalPose().p);
+	}
 };
 

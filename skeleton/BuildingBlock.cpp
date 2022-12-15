@@ -49,3 +49,9 @@ BuildingBlock::BuildingBlock(Vector3 pos, Vector3 size, blockMat bMaterial, int 
 
 	renderItem = new RenderItem(shape, rb, color);
 }
+
+void BuildingBlock::addForce(Vector3 f)
+{
+	rb->addForce(f);
+	// Deal Damage
+}

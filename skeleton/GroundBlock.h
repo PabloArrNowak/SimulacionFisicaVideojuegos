@@ -16,5 +16,9 @@ public:
 	~GroundBlock();
 
 	physx::PxActor* getRB() override { return rb; };
+
+	Vector3 getPos() override {
+		return Vector3(rb->getGlobalPose().p);
+	}
 };
 

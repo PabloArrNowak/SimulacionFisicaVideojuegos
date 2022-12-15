@@ -29,5 +29,10 @@ public:
 	virtual void resetForces() {  };
 	virtual physx::PxActor* getRB() { return nullptr; };
 
+	virtual void addForce(Vector3 f);
+
+	virtual Vector3 getPos() {
+		return Vector3();
+	}
 };
 

@@ -62,7 +62,14 @@ void LevelManager::setupLevel1()
 	
 
 	// Luego Objetos, con AddObject
-	addObject(new BuildingBlock({ 50, 0, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 10));
+	addObject(new BuildingBlock({ 250, 1, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 10));
+	addObject(new BuildingBlock({ 400, 1, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 10));
+	addObject(new BuildingBlock({ 550, 1, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 10));
+
+	addObject(new BuildingBlock({ 325, 121, 0 }, { 155, 20, 20 }, AngryBirdsObject::blockMat::GLASS, 10));
+	addObject(new BuildingBlock({ 475, 121, 0 }, { 155, 20, 20 }, AngryBirdsObject::blockMat::GLASS, 10));
+
+	addObject(new BuildingBlock({ 400, 182, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::STONE, 10));
 
 }
 

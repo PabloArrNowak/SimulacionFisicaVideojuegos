@@ -22,3 +22,7 @@ bool AngryBirdsObject::update(double t)
 {
 	return true;
 }
+
+void AngryBirdsObject::addForce(Vector3 f)
+{
+}

@@ -9,6 +9,11 @@ RBSystem::RBSystem()
 	forceGenerators = std::list<RBForceGenerator*>();
 }
 
+void RBSystem::setLevelManager(LevelManager* lvlMngr)
+{
+	levelM = lvlMngr;
+}
+
 void RBSystem::update(double t)
 {
 	rbForceRegistry.update(t);

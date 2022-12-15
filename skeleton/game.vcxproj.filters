@@ -91,6 +91,9 @@
     <ClCompile Include="RBForceRegistry.cpp">
       <Filter>RBs</Filter>
     </ClCompile>
+    <ClCompile Include="ExplosionRBForceGenerator.cpp">
+      <Filter>RBs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -187,6 +190,9 @@
       <Filter>RBs</Filter>
     </ClInclude>
     <ClInclude Include="RBForceRegistry.h">
+      <Filter>RBs</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosionRBForceGenerator.h">
       <Filter>RBs</Filter>
     </ClInclude>
   </ItemGroup>
