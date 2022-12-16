@@ -17,6 +17,7 @@ class AngryBirdsObject;
 class RBSystem
 {
 protected:
+	std::list<AngryBirdsObject*> sceneObjects;
 	std::list<ParticleGenerator*> rbGenerators;
 
 	unsigned _curr_t;

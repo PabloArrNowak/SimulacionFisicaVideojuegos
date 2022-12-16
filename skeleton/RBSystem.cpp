@@ -11,23 +11,27 @@ RBSystem::RBSystem()
 void RBSystem::setLevelManager(LevelManager* lvlMngr)
 {
 	levelM = lvlMngr;
+	sceneObjects = levelM->getSceneObjects();
 }
 
 void RBSystem::update(double t)
 {
 	rbForceRegistry.update(t);
 
-	for (auto it = levelM->getSceneObjects().begin(); it != levelM->getSceneObjects().end();) {
+	sceneObjects = levelM->getSceneObjects();
+
+	for (auto it = sceneObjects.begin(); it != sceneObjects.end();) {
 		if (!(*it)->update(t)) {
 			AngryBirdsObject* del = *it;
-			it = levelM->getSceneObjects().erase(it);
+			it = sceneObjects.erase(it);
 			rbForceRegistry.deleteObj(del);
+			levelM->removeObject(del);
 			delete del;
 		}
 		else it++;
 	}
 
-	for (auto obj : levelM->getSceneObjects()) {
+	for (auto obj : sceneObjects) {
 		obj->resetForces();
 	}
 }

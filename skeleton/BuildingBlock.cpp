@@ -52,7 +52,7 @@ BuildingBlock::BuildingBlock(Vector3 pos, Vector3 size, blockMat bMaterial, int 
 
 void BuildingBlock::addForce(Vector3 f)
 {
-	rb->addForce(f);
+	rb->addForce(f * 1000);
 	// Deal Damage
-	HP -= f.magnitudeSquared() / 1000000.0;
+	// HP -= f.magnitudeSquared() / 100.0;
 }

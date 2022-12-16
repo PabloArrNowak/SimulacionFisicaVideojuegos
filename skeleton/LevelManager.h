@@ -31,6 +31,7 @@ public:
 
 	void addObject(AngryBirdsObject* obj);
 	std::list<AngryBirdsObject*> getSceneObjects() { return sceneObjects; };
+	void removeObject(AngryBirdsObject* obj) { sceneObjects.remove(obj); };
 
 protected:
 

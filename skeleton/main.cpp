@@ -127,7 +127,7 @@ void initPhysics(bool interactive)
 
 	// For Solid Rigids +++++++++++++++++++++++++++++++++++++
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-	sceneDesc.gravity = PxVec3(0.0f, -160.0f, 0.0f);
+	sceneDesc.gravity = PxVec3(0.0f, -150.0f, 0.0f);
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = contactReportFilterShader;
@@ -404,7 +404,14 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		partSystem->resetParticles();
 		partSystem->setGenerator(currentGen);
 
+<<<<<<< Updated upstream
 		partSystem->createSlinky(5, 5, 100, new Particle({ 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 0, 1, 1, 1 }, 2), { 10, 100, -10 });
+=======
+		springPart1 = new Particle({ 8, 20, -18 }, { 0, 0, 0 }, { 0, 0, 0 }, 0.998, 2, -1, { 0, 1, 1, 1 }, 2);
+		springPart1->setResets(false);
+
+		partSystem->createAnchoredSpring(springPart1, {8, 50, -18}, 35, 2);
+>>>>>>> Stashed changes
 		break;
 		
 	case 'R':
@@ -435,7 +442,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		break;
 
 	case '9':
-		rbExplosionFAux = new ExplosionRBForceGenerator(Vector3(400, 15, 0), 300.0, 3000000.0, 0.1);
+		rbExplosionFAux = new ExplosionRBForceGenerator(Vector3(400, 15, 0), 300.0, 99999999999.0, 0.3);
 		rbExplosionFs.push_back(rbExplosionFAux);
 		rbSystem->addForceGen(rbExplosionFAux);
 		break;
