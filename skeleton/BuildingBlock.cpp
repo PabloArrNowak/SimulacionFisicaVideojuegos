@@ -54,4 +54,5 @@ void BuildingBlock::addForce(Vector3 f)
 {
 	rb->addForce(f);
 	// Deal Damage
+	HP -= f.magnitudeSquared() / 1000000.0;
 }

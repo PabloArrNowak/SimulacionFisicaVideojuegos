@@ -9,6 +9,8 @@ LevelManager::LevelManager(PxScene* gScene, RBSystem* rbSystem)
 {
 	this->gScene = gScene;
 	this->rbSystem = rbSystem;
+
+	sceneObjects = std::list<AngryBirdsObject*>();
 }
 
 LevelManager::~LevelManager()

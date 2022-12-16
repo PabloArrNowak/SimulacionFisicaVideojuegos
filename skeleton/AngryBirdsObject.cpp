@@ -20,6 +20,10 @@ AngryBirdsObject::~AngryBirdsObject()
 
 bool AngryBirdsObject::update(double t)
 {
+	if (HP != -1 && HP < 0) {
+		return false;
+	}
+
 	return true;
 }
 
