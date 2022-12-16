@@ -333,7 +333,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		
 	case 'R':
 		if (buoyF == nullptr) {
-			buoyF = new BuoyancyForceGenerator(7, 1, 2);
+			buoyF = new BuoyancyForceGenerator(12, 0.001, 1000);
 			partSystem->addForceGen(buoyF);
 		}
 		else {
