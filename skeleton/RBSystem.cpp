@@ -31,9 +31,9 @@ void RBSystem::update(double t)
 		else it++;
 	}
 
-	for (auto obj : sceneObjects) {
+	/*for (auto obj : sceneObjects) {
 		obj->resetForces();
-	}
+	}*/
 }
 
 ParticleGenerator* RBSystem::getParticleGenerator(std::string name)

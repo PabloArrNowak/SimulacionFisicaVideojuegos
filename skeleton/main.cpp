@@ -136,7 +136,7 @@ void initPhysics(bool interactive)
 
     // plane = new Plane(Vector3(0, -3, 0));
 
-	partSystem = new ParticleSystem();
+	// partSystem = new ParticleSystem();
 
 	// Fuente
 	//// currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
@@ -181,7 +181,7 @@ void stepPhysics(bool interactive, double t)
 	gScene->fetchResults(true);
 
 	// plane->update(t);
-	partSystem->update(t);
+	// partSystem->update(t);
 
 	/*for (int i = 0; i < projectiles.size(); i++) {
 		projectiles[i]->update(t);
@@ -199,8 +199,6 @@ void stepPhysics(bool interactive, double t)
 			partSystem->removeForceGen(explosionFs[i]);
 		}
 	}*/
-
-	rbSystem->update(t);
 	
 	for (int i = 0; i < rbExplosionFs.size(); i++)
 	{
@@ -209,6 +207,8 @@ void stepPhysics(bool interactive, double t)
 			rbSystem->removeForceGen(rbExplosionFs[i]);
 		}
 	}
+
+	rbSystem->update(t);
 
 }
 
@@ -442,7 +442,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		break;
 
 	case '9':
-		rbExplosionFAux = new ExplosionRBForceGenerator(Vector3(400, 15, 0), 300.0, 99999999999.0, 0.3);
+		rbExplosionFAux = new ExplosionRBForceGenerator(Vector3(400, 15, 0), 300.0, 1499999999.0, 0.3);
 		rbExplosionFs.push_back(rbExplosionFAux);
 		rbSystem->addForceGen(rbExplosionFAux);
 		break;

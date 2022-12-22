@@ -22,18 +22,19 @@ void ExplosionRBForceGenerator::updateGenerator(double t)
 
 void ExplosionRBForceGenerator::updateForce(AngryBirdsObject* obj, double t)
 {
-	/*float dirMod;
+	float dirMod;
 	Vector3 f = K / (areaRadius * areaRadius) * getExplosionDir(obj, dirMod) * exp(-timeSinceActivation / timeK);
 	if (dirMod * dirMod < 1e-7) {
 		dirMod = 10e5;
 	}
 	else {
-		dirMod = 10e10 / (dirMod * dirMod);
+		dirMod = 1 / (dirMod * dirMod);
 		std::cout << f.x << " " << f.y << " " << f.z << endl;
 	}
 	std::cout << dirMod << endl;
-	obj->addForce(f * dirMod);*/
-	obj->addForce({ 10e5, 0, 0 });
+	obj->addForce(f * dirMod);
+
+	// obj->addForce({ 10e5, 0, 0 });
 }
 
 Vector3 ExplosionRBForceGenerator::getExplosionDir(AngryBirdsObject* obj, float& mod)
