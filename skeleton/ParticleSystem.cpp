@@ -68,18 +68,18 @@ void ParticleSystem::generateFireworkSystem()
 	_firework_rules = std::vector<FireworkRule*>(3, nullptr);
 	for (int i = 0; i < _firework_rules.size(); i++) _firework_rules[i] = new FireworkRule();
 
-	_firework_rules[0]->set(0, 1, 0.5, { -1, -2, -1 }, { 20, 10, 20 }, 0.999, {});
+	_firework_rules[0]->set(0, 0.1, 0.1, { -1, -2, -1 }, { 50, 25, 50 }, 0.999, {}, {1, 1, 1});
 
-	_firework_rules[1]->set(1, 1, 0.5, { 0, 0, 0 }, { 20, 20, 20 }, 0.999, std::vector<Payload*>(1, new Payload(0, 5)));
+	_firework_rules[1]->set(1, 0.1, 0.1, { 0, 0, 0 }, { 50, 50, 50 }, 0.999, std::vector<Payload*>(1, new Payload(0, 5)), {1, 1, 0});
 
 	std::vector<Payload*> rules2Payload;
 	rules2Payload.push_back(new Payload(1, 5));
 	rules2Payload.push_back(new Payload(0, 3));
-	_firework_rules[2]->set(2, 2, 0.5, { -7, 0, -10 }, { 5, 5, 5 }, 0.999, rules2Payload);
+	_firework_rules[2]->set(2, 0.1, 0.1, { 25, 0, 0 }, { 5, 5, 5 }, 0.999, rules2Payload, {1, 0, 1});
 
 }
 
-void ParticleSystem::generateFirework(unsigned type, const Vector3& pos, const Vector3& vel)
+void ParticleSystem::generateFirework(unsigned type, const Vector3& pos, const Vector3& vel, Vector3 color)
 {
 
 	if (type >= _firework_rules.size()) {
@@ -87,7 +87,7 @@ void ParticleSystem::generateFirework(unsigned type, const Vector3& pos, const V
 	}
 
 	// Firework* fw = new Firework(pos, vel, gravity * 0.99f, _firework_rules[type]);
-	Firework* fw = new Firework(pos, vel, { 0, 0, 0 }, _firework_rules[type]);
+	Firework* fw = new Firework(pos, vel, { 0, 0, 0 }, color, _firework_rules[type]);
 	// Masa...
 
 	fireworks.push_back(fw);
@@ -117,7 +117,7 @@ void ParticleSystem::fireworksUpdate(double t)
 			for (auto itPayload = rule->_payloads.begin(); itPayload != rule->_payloads.end(); itPayload++) {
 				Payload* payload = *itPayload;
 				for (int i = 0; i < payload->count; i++) {
-					generateFirework(payload->type, pos, vel);
+					generateFirework(payload->type, pos, vel, rule->_color);
 				}
 			}
 		}

@@ -7,7 +7,7 @@ Estructura de madera y cristal con TNT: Estructuras reciben daño según la fuer
 Nivel 2:
 
 Estructura de piedra en el centro, barquitos de madera flotando en agua a los lados.
-(Túnel bajo agua por el que apuntar para estallar TNT en el centro de la estructura, llegando por debajo).
+(Túnel bajo agua por el que apuntar para estallar TNT en el centro de la estructura, llegando por debajo?).
 
 
 Nivel 3:

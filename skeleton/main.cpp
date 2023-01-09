@@ -146,7 +146,7 @@ void initPhysics(bool interactive)
     //currentGen->setParticle(new WaterDropParticle(0.5, 2.0));
     /*partSystem->setGenerator(currentGen);*/
 
-    // partSystem->generateFireworkSystem();
+    partSystem->generateFireworkSystem();
 
     // GravityForceGenerator* gravF = new GravityForceGenerator(Vector3(0, -10, 0));
     // partSystem->addForceGen(gravF);
@@ -439,6 +439,17 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
     case '1':
         levelManager->startLevel(1);
+
+
+        if (currentGen != nullptr) {
+            delete currentGen;
+            currentGen = nullptr;
+        }
+
+        partSystem->setGenerator(currentGen);
+        partSystem->resetParticles();
+
+
         break;
 
     case '2':
@@ -457,6 +468,16 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
     case '3':
         levelManager->startLevel(3);
+
+
+        if (currentGen != nullptr) {
+            delete currentGen;
+            currentGen = nullptr;
+        }
+
+        partSystem->setGenerator(currentGen);
+        partSystem->resetParticles();
+
         break;
 
     case '9':
@@ -484,6 +505,7 @@ void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)
             if (obj1->isBird() && obj2->isBuildingBlock()) {
                 obj2->hurt(static_cast<PxRigidDynamic*>(actor1)->getLinearVelocity() * static_cast<Bird*>(obj1)->getDamageMultiplier(static_cast<BuildingBlock*>(obj2)->getBlockMaterial()));
                 obj1->hurt(Vector3());
+                partSystem->generateFirework(2, static_cast<PxRigidDynamic*>(obj1->getRB())->getGlobalPose().p, Vector3(25, 0, 0), {0, 0, 0});
             }
             else
                 obj2->hurt(static_cast<PxRigidDynamic*>(actor1)->getLinearVelocity());
@@ -499,6 +521,7 @@ void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)
             if (obj1->isBird() && obj1->isBuildingBlock()) {
                 obj1->hurt(static_cast<PxRigidDynamic*>(actor2)->getLinearVelocity() * static_cast<Bird*>(obj2)->getDamageMultiplier(static_cast<BuildingBlock*>(obj1)->getBlockMaterial()));
                 obj2->hurt(Vector3());
+                partSystem->generateFirework(2, static_cast<PxRigidDynamic*>(obj2->getRB())->getGlobalPose().p, Vector3(25, 0, 0), {0, 0, 0});
             }
             else
                 obj1->hurt(static_cast<PxRigidDynamic*>(actor2)->getLinearVelocity());

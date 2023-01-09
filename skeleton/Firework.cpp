@@ -1,7 +1,7 @@
 #include "Firework.h"
 
 
-Firework::Firework(Vector3 Pos, Vector3 Vel, Vector3 Acc, FireworkRule* rule) : Particle(Pos, Vel, Acc, 0.998, 2.0f, 2.0f, { 0.8, 0.1, 0.1, 1 }, 2.0)
+Firework::Firework(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector3 color, FireworkRule* rule) : Particle(Pos, Vel, Acc, 0.998, 2.0f, 2.0f, { color.x, color.y, color.z, 1 }, 2.0)
 {
 	this->rule = rule;
 

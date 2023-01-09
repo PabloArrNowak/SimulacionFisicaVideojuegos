@@ -33,7 +33,9 @@ struct FireworkRule {
 
 	std::vector<Payload*> _payloads;
 
-	void set(int type, float meanAge, float stdDevAge, Vector3 meanVelocity, Vector3 stdDevVelocity, float damping, std::vector<Payload*> payloads) {
+	Vector3 _color;
+
+	void set(int type, float meanAge, float stdDevAge, Vector3 meanVelocity, Vector3 stdDevVelocity, float damping, std::vector<Payload*> payloads, Vector3 color) {
 
 		_type = type;
 		_meanAge = meanAge;
@@ -42,6 +44,7 @@ struct FireworkRule {
 		_stdDevVelocity = stdDevVelocity;
 		_damping = damping;
 		_payloads = payloads;
+		_color = color;
 
 	}
 
@@ -62,7 +65,7 @@ class Firework : public Particle
 	std::default_random_engine generator = std::default_random_engine(rnd());
 
 public:
-	Firework(Vector3 Pos, Vector3 Vel, Vector3 Acc, FireworkRule* rule);
+	Firework(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector3 color, FireworkRule* rule);
 	~Firework();
 
 	unsigned getType() { return rule->_type; };

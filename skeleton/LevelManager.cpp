@@ -55,6 +55,7 @@ void LevelManager::clearBlocks()
 	for (auto it = sceneObjects.begin(); it != sceneObjects.end();) {
 		auto e = *it;
 		it = sceneObjects.erase(it);
+		gScene->removeActor(*e->getRB());
 		rbSystem->removeObj(e);
 		delete e;
 	}
@@ -163,7 +164,7 @@ void LevelManager::setupLevel2()
 
 
 	// Birds
-	addBird(new Chuck(this, slingshotPos), true);
+	addBird(new Blues(this, slingshotPos), true);
 	addBird(new Chuck(this, Vector3(slingshotPos.x - 100, 31, 0)), true);
 	addBird(new Chuck(this, Vector3(slingshotPos.x - 200, 31, 0)), true);
 }

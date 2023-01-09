@@ -33,7 +33,7 @@ public:
 	ParticleGenerator* getParticleGenerator(std::string name);
 
 	void generateFireworkSystem();
-	void generateFirework(unsigned type, const Vector3& pos, const Vector3& vel);
+	void generateFirework(unsigned type, const Vector3& pos, const Vector3& vel, Vector3 color);
 	FireworkRule* getFireworkRule(unsigned type) { return _firework_rules[type]; };
 
 	void fireworksUpdate(double t);
