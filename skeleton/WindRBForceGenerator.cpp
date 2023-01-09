@@ -21,9 +21,9 @@ void WindRBForceGenerator::updateForce(AngryBirdsObject* obj, double t)
     Vector3 windVel = getWindVel(obj);
 
     // Con k1 = 0.4 y k2 = 0.01
-    Vector3 f = 0.005 * (windVel - partVel) + 0.0007 * (windVel - partVel).magnitude() * (windVel - partVel);
+    Vector3 f = 0.00005 * (windVel - partVel) + 0.000006 * (windVel - partVel).magnitude() * (windVel - partVel);
     if (windVel != Vector3(0, 0, 0))
-        obj->addForce(Vector3(0, f.y, 0));
+        obj->addForce(f);
 }
 
 Vector3 WindRBForceGenerator::getWindVel(AngryBirdsObject* particle)

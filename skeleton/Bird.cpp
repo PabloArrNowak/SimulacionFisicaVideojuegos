@@ -45,10 +45,6 @@ bool Bird::update(double t)
 		addForce(Vector3(0, 0.3005, 0));
 	}
 
-	if (timeLeft <= 1) {
-		powerAvailable = false;
-	}
-
 	if (!flying && !powerAvailable) {
 		timeLeft -= t;
 	}
@@ -58,8 +54,10 @@ bool Bird::update(double t)
 
 void Bird::hurt(Vector3 f)
 {
-	if (flying)
+	if (flying) {
 		flying = false;
+		powerAvailable = false;
+	}
 }
 
 void Bird::autoLaunch()

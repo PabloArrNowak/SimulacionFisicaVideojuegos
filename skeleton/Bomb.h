@@ -2,7 +2,7 @@
 
 #include "Bird.h"
 
-class Bomb : public Bird
+class Bomb : public Bird	// No implementado, habría que cambiar como se gestionan todas las explosiones y no da tiempo rn
 {
 protected:
 

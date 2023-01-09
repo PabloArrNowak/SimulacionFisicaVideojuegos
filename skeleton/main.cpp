@@ -138,7 +138,7 @@ void initPhysics(bool interactive)
 
     // plane = new Plane(Vector3(0, -3, 0));
 
-    // partSystem = new ParticleSystem();
+    partSystem = new ParticleSystem();
 
     // Fuente
     //// currentGen = new SimpleParticleGenerator(Vector3(0, 2, -10), Vector3(0, 25, 0), Vector3(0, -10, 0), 3.5, Vector3(2, 0, 2), Vector3(5, 2, 5), 0.5, 2);
@@ -183,7 +183,7 @@ void stepPhysics(bool interactive, double t)
     gScene->fetchResults(true);
 
     // plane->update(t);
-    // partSystem->update(t);
+    partSystem->update(t);
 
     /*for (int i = 0; i < projectiles.size(); i++) {
         projectiles[i]->update(t);
@@ -443,6 +443,16 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
     case '2':
         levelManager->startLevel(2);
+
+        if (currentGen != nullptr) {
+            delete currentGen;
+            currentGen = nullptr;
+        }
+        partSystem->resetParticles();
+        currentGen = new SimpleParticleGenerator(Vector3(-350, 0, 0), Vector3(0, 500, 0), Vector3(0, -5, 0), 1, Vector3(200, 0, 0), Vector3(3, 10, 0), 1, 2);
+        currentParticle = new WaterDropParticle(5, 0.5);
+        currentGen->setParticle(currentParticle);
+        partSystem->setGenerator(currentGen);
         break;
 
     case '3':
@@ -473,6 +483,7 @@ void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)
         if (actor1->is<PxRigidDynamic>()) {
             if (obj1->isBird() && obj2->isBuildingBlock()) {
                 obj2->hurt(static_cast<PxRigidDynamic*>(actor1)->getLinearVelocity() * static_cast<Bird*>(obj1)->getDamageMultiplier(static_cast<BuildingBlock*>(obj2)->getBlockMaterial()));
+                obj1->hurt(Vector3());
             }
             else
                 obj2->hurt(static_cast<PxRigidDynamic*>(actor1)->getLinearVelocity());
@@ -487,6 +498,7 @@ void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)
         if (actor2->is<PxRigidDynamic>()) {
             if (obj1->isBird() && obj1->isBuildingBlock()) {
                 obj1->hurt(static_cast<PxRigidDynamic*>(actor2)->getLinearVelocity() * static_cast<Bird*>(obj2)->getDamageMultiplier(static_cast<BuildingBlock*>(obj1)->getBlockMaterial()));
+                obj2->hurt(Vector3());
             }
             else
                 obj1->hurt(static_cast<PxRigidDynamic*>(actor2)->getLinearVelocity());

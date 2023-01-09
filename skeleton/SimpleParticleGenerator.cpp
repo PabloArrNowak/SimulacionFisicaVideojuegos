@@ -12,7 +12,7 @@ SimpleParticleGenerator::SimpleParticleGenerator(Vector3 pos, Vector3 vel, Vecto
 	lifeTimeWidth = lifeTimeWidthh;
 	generationProb = 1;
 
-	numParticles = 5;
+	numParticles = 1;
 
 	distribGenProb = uniform_real_distribution<double>(0, 1);
 	distribLifeTime = uniform_real_distribution<double>(lifeTime - lifeTimeWidth / 2, lifeTime + lifeTimeWidth / 2);
