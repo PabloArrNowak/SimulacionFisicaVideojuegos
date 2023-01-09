@@ -49,7 +49,8 @@ public:
 		}
 	};
 
-	void removeForceGen(RBForceGenerator* gen) { forceGenerators.remove(gen); };
+	void removeForceGen(RBForceGenerator* gen) { forceGenerators.remove(gen); rbForceRegistry.deleteForce(gen); };
+	void removeObj(AngryBirdsObject* obj) { sceneObjects.remove(obj); rbForceRegistry.deleteObj(obj); };
 
 	void addToRegistry(AngryBirdsObject* obj, RBForceGenerator* f) { rbForceRegistry.addRegistry(f, obj); };
 

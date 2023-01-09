@@ -12,6 +12,7 @@ void RBSystem::setLevelManager(LevelManager* lvlMngr)
 {
 	levelM = lvlMngr;
 	sceneObjects = levelM->getSceneObjects();
+	forceGenerators = levelM->getSceneForces();
 }
 
 void RBSystem::update(double t)
@@ -19,6 +20,7 @@ void RBSystem::update(double t)
 	rbForceRegistry.update(t);
 
 	sceneObjects = levelM->getSceneObjects();
+	forceGenerators = levelM->getSceneForces();
 
 	for (auto it = sceneObjects.begin(); it != sceneObjects.end();) {
 		if (!(*it)->update(t)) {
@@ -34,17 +36,4 @@ void RBSystem::update(double t)
 	/*for (auto obj : sceneObjects) {
 		obj->resetForces();
 	}*/
-}
-
-ParticleGenerator* RBSystem::getParticleGenerator(std::string name)
-{
-	return nullptr;
-}
-
-void RBSystem::setGenerator(ParticleGenerator* gen)
-{
-}
-
-void RBSystem::resetParticles()
-{
 }

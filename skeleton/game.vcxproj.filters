@@ -94,6 +94,21 @@
     <ClCompile Include="ExplosionRBForceGenerator.cpp">
       <Filter>RBs</Filter>
     </ClCompile>
+    <ClCompile Include="Red.cpp">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClCompile>
+    <ClCompile Include="Chuck.cpp">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClCompile>
+    <ClCompile Include="Blues.cpp">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClCompile>
+    <ClCompile Include="WindRBForceGenerator.cpp">
+      <Filter>RBs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -193,6 +208,21 @@
       <Filter>RBs</Filter>
     </ClInclude>
     <ClInclude Include="ExplosionRBForceGenerator.h">
+      <Filter>RBs</Filter>
+    </ClInclude>
+    <ClInclude Include="Red.h">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClInclude>
+    <ClInclude Include="Chuck.h">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClInclude>
+    <ClInclude Include="Blues.h">
+      <Filter>AngryBirds\Birds</Filter>
+    </ClInclude>
+    <ClInclude Include="WindRBForceGenerator.h">
       <Filter>RBs</Filter>
     </ClInclude>
   </ItemGroup>

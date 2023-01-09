@@ -6,16 +6,16 @@
 class WindForceGenerator : public ForceGenerator
 {
 protected:
-	Vector3 windDirection;
+    Vector3 windDirection;
 
 public:
 
-	WindForceGenerator(const Vector3& dir);
-	~WindForceGenerator();
+    WindForceGenerator(const Vector3& dir);
+    ~WindForceGenerator();
 
-	virtual void updateForce(Particle* particle, double t) override;
+    virtual void updateForce(Particle* particle, double t) override;
 
-	inline void setWindDir(Vector3 dir) { windDirection = dir; };
+    inline void setWindDir(Vector3 dir) { windDirection = dir; };
 
 };
 

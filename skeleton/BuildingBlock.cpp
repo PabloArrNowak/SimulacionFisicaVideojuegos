@@ -2,11 +2,12 @@
 #include "RenderUtils.hpp"
 #include <PxRigidDynamic.h>
 
-BuildingBlock::BuildingBlock(Vector3 pos, Vector3 size, blockMat bMaterial, int hp) : AngryBirdsObject()
+BuildingBlock::BuildingBlock(Vector3 pos, Vector3 size, blockMat bMaterial, float hp) : AngryBirdsObject()
 {
 	material = bMaterial;
 	HP = hp;
 	dimensions = size;
+	destroysOthers = true;
 
 	Vector4 color;
 	double mass;
@@ -53,6 +54,12 @@ BuildingBlock::BuildingBlock(Vector3 pos, Vector3 size, blockMat bMaterial, int 
 void BuildingBlock::addForce(Vector3 f)
 {
 	rb->addForce(f * 1000);
-	// Deal Damage
-	// HP -= f.magnitudeSquared() / 100.0;
+
+	if (HP != -1)
+		hurt(f);
+}
+
+void BuildingBlock::hurt(Vector3 f)
+{
+	HP -= f.magnitudeSquared() / 10000;
 }

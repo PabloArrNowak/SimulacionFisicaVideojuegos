@@ -4,6 +4,7 @@ GroundBlock::GroundBlock(Vector3 pos, Vector3 size) : AngryBirdsObject()
 {
 	HP = -1;
 	dimensions = size;
+	destroysOthers = true;
 
 	Vector4 color(97.0 / 255, 49.0 / 255, 47.0 / 255, 1);
 

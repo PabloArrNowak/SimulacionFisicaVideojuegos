@@ -4,7 +4,7 @@ AngryBirdsObject::AngryBirdsObject() {
 
 }
 
-AngryBirdsObject::AngryBirdsObject(int hp, bool destroysOther, RenderItem* renderIt) {
+AngryBirdsObject::AngryBirdsObject(float hp, bool destroysOther, RenderItem* renderIt) {
 
 	HP = hp;
 	destroysOthers = destroysOther;
