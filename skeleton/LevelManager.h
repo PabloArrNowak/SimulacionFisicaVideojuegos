@@ -47,6 +47,8 @@ public:
 	void birdInteract();
 
 	AngryBirdsObject* getObjFromActor(PxActor* actor);
+	int getCurrentLevel() { return currentLevel; };
+	Vector3 getSlingshotPos() { return slingshotPos; };
 
 protected:
 

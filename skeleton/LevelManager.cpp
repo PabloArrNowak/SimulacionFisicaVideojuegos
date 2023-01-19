@@ -8,6 +8,7 @@
 #include "Chuck.h"
 #include "Blues.h"
 #include "WindRBForceGenerator.h"
+#include "BuoyancyRBForceGenerator.h"
 
 LevelManager::LevelManager(PxScene* gScene, RBSystem* rbSystem)
 {
@@ -172,23 +173,33 @@ void LevelManager::setupLevel2()
 void LevelManager::setupLevel3()
 {
 	// Primero Fuerzas
-	addForceGen(new WindRBForceGenerator(Vector3(500, 500, 0), Vector3(-350, 300, 0), Vector3(200, 800, 50)));
+	addForceGen(new BuoyancyRBForceGenerator(300, 80, 1, Vector3(400, 300, 0), 1000, 300));
 
 	// Luego Objetos, con AddObject
 
-	addObject(new BuildingBlock({ 500, 250, 0 }, { 500, 500, 50 }, AngryBirdsObject::blockMat::STONE, 1000));
+	// addObject(new BuildingBlock({ 500, 250, 0 }, { 500, 500, 50 }, AngryBirdsObject::blockMat::STONE, 1000));
 
-	addObject(new BuildingBlock({ 350, 551, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 50));
-	addObject(new BuildingBlock({ 500, 551, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 50));
-	addObject(new BuildingBlock({ 650, 551, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 50));
+	addObject(new BuildingBlock({ 350, 251, 0 }, { 100, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 50));
+	addObject(new BuildingBlock({ 500, 251, 0 }, { 100, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 50));
+	addObject(new BuildingBlock({ 650, 251, 0 }, { 100, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 50));
 
-	addObject(new BuildingBlock({ 425, 621, 0 }, { 155, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 30));
-	addObject(new BuildingBlock({ 575, 621, 0 }, { 155, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 30));
+	addObject(new BuildingBlock({ 350, 321, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 50));
+	addObject(new BuildingBlock({ 500, 321, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 50));
+	addObject(new BuildingBlock({ 650, 321, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 50));
 
-	addObject(new BuildingBlock({ 500, 682, 0 }, { 20, 100, 20 }, AngryBirdsObject::blockMat::WOOD, 100));
+	addObject(new BuildingBlock({ 425, 391, 0 }, { 155, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 30));
+	addObject(new BuildingBlock({ 575, 391, 0 }, { 155, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 30));
 
-	addObject(new BuildingBlock({ 425, 752, 0 }, { 155, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 30));
-	addObject(new BuildingBlock({ 575, 752, 0 }, { 155, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 30));
+	addObject(new BuildingBlock({ 400, 412, 0 }, { 100, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 100));
+	addObject(new BuildingBlock({ 501, 412, 0 }, { 100, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 100));
+	addObject(new BuildingBlock({ 602, 412, 0 }, { 100, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 100));
+
+	addObject(new BuildingBlock({ 400, 432, 0 }, { 100, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 100));
+	addObject(new BuildingBlock({ 501, 432, 0 }, { 100, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 100));
+	addObject(new BuildingBlock({ 602, 432, 0 }, { 100, 20, 20 }, AngryBirdsObject::blockMat::WOOD, 100));
+
+
+	addObject(new BuildingBlock({ 600, 202, -500 }, { 1000, 370, 300 }, AngryBirdsObject::blockMat::GLASS, 30000));
 
 
 	// Birds

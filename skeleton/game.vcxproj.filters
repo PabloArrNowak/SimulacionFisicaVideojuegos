@@ -109,6 +109,9 @@
     <ClCompile Include="WindRBForceGenerator.cpp">
       <Filter>RBs</Filter>
     </ClCompile>
+    <ClCompile Include="BuoyancyRBForceGenerator.cpp">
+      <Filter>RBs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -223,6 +226,9 @@
       <Filter>AngryBirds\Birds</Filter>
     </ClInclude>
     <ClInclude Include="WindRBForceGenerator.h">
+      <Filter>RBs</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancyRBForceGenerator.h">
       <Filter>RBs</Filter>
     </ClInclude>
   </ItemGroup>

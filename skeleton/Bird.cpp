@@ -42,7 +42,8 @@ bool Bird::update(double t)
 	}
 
 	if (!flying && powerAvailable && lvlMngr->getActiveBird() == this) {
-		addForce(Vector3(0, 0.3005, 0));
+		rb->addForce(Vector3(0, 300.05, 0));
+		// rb->setGlobalPose(PxTransform(lvlMngr->getSlingshotPos()));
 	}
 
 	if (!flying && !powerAvailable) {
@@ -62,12 +63,16 @@ void Bird::hurt(Vector3 f)
 
 void Bird::autoLaunch()
 {
-	addForce(Vector3(40, 30, 0));
 	flying = true;
+	addForce(Vector3(40, 30, 0));
 }
 
 void Bird::addForce(Vector3 f)
 {
+	if (!flying && powerAvailable && lvlMngr->getActiveBird() == this) {
+		return;
+	}
+
 	rb->addForce(f * 1000);
 
 	//if (HP != -1)

@@ -260,6 +260,7 @@
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="BuildingBlock.cpp" />
     <ClCompile Include="BuoyancyForceGenerator.cpp" />
+    <ClCompile Include="BuoyancyRBForceGenerator.cpp" />
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="Chuck.cpp" />
     <ClCompile Include="ExplosionExpandingForceGenerator.cpp" />
@@ -301,6 +302,7 @@
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="BuildingBlock.h" />
     <ClInclude Include="BuoyancyForceGenerator.h" />
+    <ClInclude Include="BuoyancyRBForceGenerator.h" />
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="Chuck.h" />
     <ClInclude Include="core.hpp" />

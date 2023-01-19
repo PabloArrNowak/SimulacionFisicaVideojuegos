@@ -469,7 +469,6 @@ void keyPress(unsigned char key, const PxTransform& camera)
     case '3':
         levelManager->startLevel(3);
 
-
         if (currentGen != nullptr) {
             delete currentGen;
             currentGen = nullptr;

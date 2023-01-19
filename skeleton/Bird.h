@@ -31,6 +31,7 @@ public:
 	virtual bool update(double t) override;
 	void resetForces() override { rb->clearForce(); };
 	void setPos(Vector3 newPos);
+	Vector3 getPos() override { return rb->getGlobalPose().p; };
 
 	physx::PxActor* getRB() override { return rb; };
 	bool hasPowerAvilable() { return powerAvailable; };
